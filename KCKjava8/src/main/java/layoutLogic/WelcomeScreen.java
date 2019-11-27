@@ -1,9 +1,14 @@
 package layoutLogic;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class WelcomeScreen {
 
@@ -16,7 +21,7 @@ public class WelcomeScreen {
         for (int i = 0; i < 100; i++) {
             pbar.setProgress(i / 100);
             if (i == 80) {
-                //cos tam
+                DBConnector.getInstance();
             }
 
         }
@@ -26,7 +31,12 @@ public class WelcomeScreen {
     @FXML
     void initialize()
     {
+        ProgressMax();
+    }
 
+    @FXML
+    public void showMainMenu() throws IOException {
+        WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
     }
 
 }
