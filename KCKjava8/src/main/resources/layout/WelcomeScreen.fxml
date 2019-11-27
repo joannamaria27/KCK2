@@ -21,7 +21,7 @@
       </ImageView>
    </top>
    <bottom>
-      <ProgressBar fx:id="pbar" disable="true" prefHeight="28.0" prefWidth="433.0" progress="0.14" BorderPane.alignment="CENTER">
+      <ProgressBar fx:id="pbar" disable="true" prefHeight="28.0" prefWidth="433.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="30.0" />
          </BorderPane.margin>

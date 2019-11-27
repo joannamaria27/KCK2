@@ -11,6 +11,7 @@ public class WindowSingleton {
 
     private static WindowSingleton instance;
     private Stage primaryStage;
+    private Scene scene;
 
     private WindowSingleton() { }
 
@@ -32,18 +33,20 @@ public class WindowSingleton {
             borderPane = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("error");
         }
 
-        Scene scene = new Scene(borderPane);
+        scene = new Scene(borderPane);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("KCK2");
         primaryStage.show();
     }
 
-    public void startApp(Stage stage) throws IOException {
+    public void startApp(Stage stage) throws IOException, InterruptedException {
         primaryStage = stage;
         setLayout("/layout/WelcomeScreen.fxml");
+        //WelcomeScreen.ProgressMax();
 
 
     }

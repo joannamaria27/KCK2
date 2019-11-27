@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" style="-fx-background-color: 25367;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" style="-fx-background-color: 25367;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layoutLogic.MainMenuScreen">
    <right>
-      <ImageView fx:id="scooterMain" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="scooterMain" fitHeight="300.0" fitWidth="300.0" onMousePressed="#openScooterMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@../image/scooter.png" />
          </image>
@@ -19,7 +18,7 @@
       </ImageView>
    </right>
    <bottom>
-      <ImageView fx:id="customerMain" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="customerMain" fitHeight="250.0" fitWidth="250.0" onMousePressed="#openClientMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@../image/customer.png" />
          </image>
@@ -43,7 +42,7 @@
       </StackPane>
    </top>
    <left>
-      <ImageView fx:id="carMain" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="carMain" fitHeight="300.0" fitWidth="300.0" onMousePressed="#openCarMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@../image/car.png" />
          </image>
@@ -53,7 +52,7 @@
       </ImageView>
    </left>
    <center>
-      <ImageView fx:id="bicycleMain" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="bicycleMain" fitHeight="300.0" fitWidth="300.0" onMousePressed="#openBicycleMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
             <Image url="@../image/bicycle.png" />
          </image>
