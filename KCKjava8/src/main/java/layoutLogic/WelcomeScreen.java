@@ -46,7 +46,7 @@ public class WelcomeScreen {
 
     @FXML
     public void showMainMenu() throws IOException, InterruptedException {
-        DBConnector dbConnector = DBConnector.getInstance();
+        // DBConnector dbConnector = DBConnector.getInstance();
         WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
     }
 

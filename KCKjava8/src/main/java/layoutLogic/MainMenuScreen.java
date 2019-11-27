@@ -8,7 +8,7 @@ public class MainMenuScreen {
         System.out.println("openCarMenu");
 
         // todo
-//        WindowSingleton.getInstance().setLayout("/layout/CarScreen.fxml");
+        WindowSingleton.getInstance().setLayout("/layout/CarOptions.fxml");
     }
 
     public void openBicycleMenu() throws IOException {
@@ -22,7 +22,7 @@ public class MainMenuScreen {
         System.out.println("openScooterMenu");
 
         // todo
-//        WindowSingleton.getInstance().setLayout("/layout/ScooterScreen.fxml");
+        WindowSingleton.getInstance().setLayout("/layout/ScooterOptions.fxml");
     }
 
     public void openClientMenu() throws IOException {
