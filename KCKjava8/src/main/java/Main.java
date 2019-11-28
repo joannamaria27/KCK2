@@ -1,13 +1,10 @@
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import layoutLogic.WelcomeScreen;
+import layoutLogic.WindowSingleton;
 
 public class Main  extends Application {
+
+    public static  Stage primaryStage;
 
 //    public static Scene scene;
 
@@ -18,16 +15,10 @@ public class Main  extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(this.getClass().getResource("/layout/WelcomeScreen.fxml"));
+        System.out.println("halo");
+        WindowSingleton window = WindowSingleton.getInstance();
+        window.startApp(primaryStage);
 
-        BorderPane borderPane = loader.load();
-
-        Scene scene = new Scene(borderPane);
-
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("KCK2");
-        primaryStage.show();
 
 
     }

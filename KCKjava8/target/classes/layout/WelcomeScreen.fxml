@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layoutLogic.WelcomeScreen">
    <top>
       <ImageView fx:id="logo" fitHeight="222.0" fitWidth="1067.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -21,7 +21,7 @@
       </ImageView>
    </top>
    <bottom>
-      <ProgressBar fx:id="pbar" prefHeight="28.0" prefWidth="433.0" progress="0.14" BorderPane.alignment="CENTER">
+      <ProgressBar fx:id="pbar" disable="true" prefHeight="28.0" prefWidth="433.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="30.0" />
          </BorderPane.margin>
@@ -30,7 +30,7 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="start" disable="true" mnemonicParsing="false" prefHeight="70.0" prefWidth="430.0" text="START" textAlignment="CENTER" textFill="#15052f" StackPane.alignment="BOTTOM_CENTER">
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="70.0" prefWidth="430.0" text="START" textAlignment="CENTER" textFill="#15052f" StackPane.alignment="BOTTOM_CENTER">
                <StackPane.margin>
                   <Insets bottom="20.0" />
                </StackPane.margin>
