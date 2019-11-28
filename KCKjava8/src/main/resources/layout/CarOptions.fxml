@@ -75,7 +75,7 @@
                                         <Insets left="50.0" top="100.0" />
                                     </StackPane.margin>
                                 </Label>
-                                <TextField promptText="ID" StackPane.alignment="CENTER">
+                                <TextField fx:id="deleteVehicleIdTextField" promptText="ID" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="50.0" right="400.0" />
                                     </StackPane.margin>

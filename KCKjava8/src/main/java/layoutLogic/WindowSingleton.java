@@ -93,7 +93,9 @@ public class WindowSingleton {
 
         Stage window = new Stage();
         window.setTitle("Lista pojazdów typu \"" + type +"\"");
-        TableView<Pojazd> table;
+        final TableView<Pojazd> table;
+//        final Button select = new Button("Select");
+//        String choice = "";
 
         // id
         TableColumn<Pojazd, Long> idColumn = new TableColumn<Pojazd, Long>("ID");
@@ -125,7 +127,6 @@ public class WindowSingleton {
         dostepnosColumn.setMinWidth(100);
         dostepnosColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, String>("dostepnosc"));
 
-
         table = new TableView<Pojazd>();
         table.setItems(WindowSingleton.getVehiclesObservableList(type));
         table.getColumns().addAll(idColumn, markaColumn, modelColumn, idUbezpieczeniaColumn, stanPojazduColumn, dostepnosColumn);
@@ -136,6 +137,14 @@ public class WindowSingleton {
         Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
+//        select.setOnAction(new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent e) {
+//                Pojazd selection;
+//                selection = table.getSelectionModel().getSelectedItem();
+//                //System.out.println(selection.getId());
+//
+//            }
+//        });
 
 
     }

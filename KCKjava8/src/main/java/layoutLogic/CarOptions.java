@@ -31,12 +31,14 @@ public class CarOptions {
     private TextField dostepnosc;
     @FXML
     private Button carListButton;
+    @FXML
+    private static TextField deleteVehicleIdTextField;
 
     private String _marka, _model, _stanPojazdu, _ubezpieczenie, _dostepnosc;
     private long _id;
 
     @FXML
-    public void addCarToDB(){
+    public void addCarToDB() {
         _marka = marka.getText();
         _model = model.getText();
         _stanPojazdu = stanPojazdu.getText();
@@ -46,10 +48,11 @@ public class CarOptions {
         DBConnector.getInstance().start();
         DBConnector.getInstance().addPojazd(new Pojazd("samochod", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
         DBConnector.getInstance().stop();
+        WindowSingleton.alert("Dodano pojazd");
     }
 
     @FXML
-    public void deleteCarFromDB(){
+    public void deleteCarFromDB() {
         try {
             _id = Long.parseLong(id.getText());
         } catch (NumberFormatException e) {
@@ -59,26 +62,24 @@ public class CarOptions {
         Pojazd pojazd = DBConnector.getInstance().entityManager.find(Pojazd.class, _id);
         List<Wypozyczenie> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
 
-        if(pojazd == null){
+        if (pojazd == null) {
             WindowSingleton.alert("Nie ma takiego pojazdu");
             DBConnector.getInstance().stop();
             return;
         }
-        if(list.size()>0){
+        if (list.size() > 0) {
             WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
             DBConnector.getInstance().stop();
             return;
         }
         // todo sout przeniesc do okna
 
-        System.out.println("usunieto pojazd o id "+_id);
+        WindowSingleton.alert("Usunięto pojazd o id = " + _id);
+        System.out.println("usunieto pojazd o id " + _id);
         DBConnector.getInstance().deletePojazd(pojazd);
         DBConnector.getInstance().stop();
     }
 
-    public void showCarsInNewWindow(){
-        // todo wyswietlanie listy samochodow w nowym oknie
-    }
 
     @FXML
     public void showMainMenu() throws IOException, InterruptedException {
@@ -86,7 +87,7 @@ public class CarOptions {
         WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
     }
 
-    public void showCarList(){
+    public void showCarList() {
 //        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
 //        String[] elements = new String[list.size()];
 //        for (int i = 0; i < list.size(); i++) {
@@ -100,6 +101,7 @@ public class CarOptions {
 //        WindowSingleton.showList("Lista samochodów","ID - Marka - Model - Dostępność - ID ubezpieczenia - Stan pojazdu - Typ", elements);
 
         WindowSingleton.showVehicleTable("samochod");
+
     }
 
 }
