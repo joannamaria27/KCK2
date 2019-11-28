@@ -80,7 +80,7 @@
                                         <Insets bottom="400.0" left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button mnemonicParsing="false" text="USUŃ" StackPane.alignment="CENTER">
+                                <Button fx:id="deleteCarButton" mnemonicParsing="false" onAction="#deleteCarFromDB" text="USUŃ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" right="400.0" />
                                     </StackPane.margin>
@@ -185,7 +185,7 @@
         </TabPane>
     </center>
     <bottom>
-        <Button fx:id="mainMenuCar" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
+        <Button fx:id="mainMenuCar" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                 <Insets bottom="50.0" right="50.0" />
             </BorderPane.margin>

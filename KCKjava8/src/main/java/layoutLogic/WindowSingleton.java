@@ -89,12 +89,12 @@ public class WindowSingleton {
         window.show();
     }
 
-    public static void showVehicleTable(String type){
+    public static void showVehicleTable(String type, final TextField deleteVehicleIdTextField){
 
-        Stage window = new Stage();
+        final Stage window = new Stage();
         window.setTitle("Lista pojazdów typu \"" + type +"\"");
         final TableView<Pojazd> table;
-//        final Button select = new Button("Select");
+        final Button select = new Button("Select");
 //        String choice = "";
 
         // id
@@ -132,19 +132,20 @@ public class WindowSingleton {
         table.getColumns().addAll(idColumn, markaColumn, modelColumn, idUbezpieczeniaColumn, stanPojazduColumn, dostepnosColumn);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(table);
+        vBox.getChildren().addAll(table, select);
 
         Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
-//        select.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                Pojazd selection;
-//                selection = table.getSelectionModel().getSelectedItem();
-//                //System.out.println(selection.getId());
-//
-//            }
-//        });
+        select.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                Pojazd selection;
+                selection = table.getSelectionModel().getSelectedItem();
+                System.out.println(selection.getId());
+                deleteVehicleIdTextField.setText(String.valueOf(selection.getId()));
+                window.close();
+            }
+        });
 
 
     }

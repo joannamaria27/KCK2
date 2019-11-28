@@ -2,10 +2,21 @@ package layoutLogic;
 
 import domain.Pojazd;
 import domain.Wypozyczenie;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import javax.xml.soap.Text;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,7 +43,10 @@ public class CarOptions {
     @FXML
     private Button carListButton;
     @FXML
-    private static TextField deleteVehicleIdTextField;
+    private TextField deleteVehicleIdTextField;
+
+
+    TextField editVehicleIdTextView;
 
     private String _marka, _model, _stanPojazdu, _ubezpieczenie, _dostepnosc;
     private long _id;
@@ -54,7 +68,7 @@ public class CarOptions {
     @FXML
     public void deleteCarFromDB() {
         try {
-            _id = Long.parseLong(id.getText());
+            _id = Long.parseLong(deleteVehicleIdTextField.getText());
         } catch (NumberFormatException e) {
             System.out.println("zły format");
         }
@@ -100,8 +114,83 @@ public class CarOptions {
 //        }
 //        WindowSingleton.showList("Lista samochodów","ID - Marka - Model - Dostępność - ID ubezpieczenia - Stan pojazdu - Typ", elements);
 
-        WindowSingleton.showVehicleTable("samochod");
+        WindowSingleton.showVehicleTable("samochod", deleteVehicleIdTextField);
 
+    }
+
+//    public void showVehicleTable(String type){
+//
+//        final Stage window = new Stage();
+//        window.setTitle("Lista pojazdów typu \"" + type +"\"");
+//        final TableView<Pojazd> table;
+//        final Button select = new Button("Select");
+//        String choice = "";
+//
+//        // id
+//        TableColumn<Pojazd, Long> idColumn = new TableColumn<Pojazd, Long>("ID");
+//        idColumn.setMinWidth(50);
+//        idColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, Long>("id"));
+//
+//        // marka
+//        TableColumn<Pojazd, String> markaColumn = new TableColumn<Pojazd, String>("Marka");
+//        markaColumn.setMinWidth(100);
+//        markaColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, String>("marka"));
+//
+//        // model
+//        TableColumn<Pojazd, String> modelColumn = new TableColumn<Pojazd, String>("Model");
+//        modelColumn.setMinWidth(100);
+//        modelColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, String>("model"));
+//
+//        // id ubezpieczenia
+//        TableColumn<Pojazd, String> idUbezpieczeniaColumn = new TableColumn<Pojazd, String>("ID ubezpieczenia");
+//        idUbezpieczeniaColumn.setMinWidth(100);
+//        idUbezpieczeniaColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, String>("id_ubezpieczenia"));
+//
+//        // stan pojazdu
+//        TableColumn<Pojazd, String> stanPojazduColumn = new TableColumn<Pojazd, String>("Stan pojazdu");
+//        stanPojazduColumn.setMinWidth(100);
+//        stanPojazduColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, String>("stan_pojazdu"));
+//
+//        // dostepnosc
+//        TableColumn<Pojazd, String> dostepnosColumn = new TableColumn<Pojazd, String>("Dostępność");
+//        dostepnosColumn.setMinWidth(100);
+//        dostepnosColumn.setCellValueFactory(new PropertyValueFactory<Pojazd, String>("dostepnosc"));
+//
+//        table = new TableView<Pojazd>();
+//        table.setItems(getVehiclesObservableList(type));
+//        table.getColumns().addAll(idColumn, markaColumn, modelColumn, idUbezpieczeniaColumn, stanPojazduColumn, dostepnosColumn);
+//
+//        VBox vBox = new VBox();
+//        vBox.getChildren().addAll(table, select);
+//
+//        Scene scene = new Scene(vBox);
+//        window.setScene(scene);
+//        window.show();
+//        select.setOnAction(new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent e) {
+//                Pojazd selection;
+//                selection = table.getSelectionModel().getSelectedItem();
+//                System.out.println(selection.getId());
+//                deleteVehicleIdTextField.setText(String.valueOf(selection.getId()));
+//                window.close();
+//            }
+//        });
+//
+//
+//    }
+//
+//    private ObservableList<Pojazd> getVehiclesObservableList(String type){
+//        ObservableList<Pojazd> vehicles = FXCollections.observableArrayList();
+//        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
+//
+//        for (Pojazd pojazd : list) {
+//            vehicles.add(pojazd);
+//        }
+//        return vehicles;
+//    }
+
+    public void editVehicle(String type){
+        WindowSingleton.showVehicleTable(type, editVehicleIdTextView);
     }
 
 }
