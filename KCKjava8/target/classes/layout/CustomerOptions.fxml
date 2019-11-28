@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layoutLogic.CustomerOptions">
+    <center>
+        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="DODAJ">
+                    <content>
+                        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;">
+                            <children>
+                                <TextField fx:id="nazwisko" prefHeight="31.0" prefWidth="599.0" promptText="NAZWISKO" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="400.0" left="50.0" right="400.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField fx:id="imie" prefHeight="31.0" prefWidth="599.0" promptText="IMIĘ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" left="50.0" right="400.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField fx:id="pesel" prefHeight="31.0" prefWidth="599.0" promptText="PESEL">
+                                    <StackPane.margin>
+                                        <Insets bottom="200.0" left="50.0" right="400.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField fx:id="dataur" prefHeight="31.0" prefWidth="599.0" promptText="DATA URODZENIA" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0" left="50.0" right="400.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField fx:id="adres" prefHeight="31.0" prefWidth="599.0" promptText="ADRES" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets left="50.0" right="400.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <Button fx:id="addCustomer" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="DODAJ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets right="400.0" top="300.0" />
+                                    </StackPane.margin>
+                                    <cursor>
+                                        <Cursor fx:constant="OPEN_HAND" />
+                                    </cursor>
+                                </Button>
+                                <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+                                    <image>
+                                        <Image url="@../image/customer.png" />
+                                    </image>
+                                    <StackPane.margin>
+                                        <Insets bottom="200.0" right="50.0" />
+                                    </StackPane.margin>
+                                </ImageView>
+                        <TextField fx:id="numerPrawaJazdy" prefHeight="31.0" prefWidth="599.0" promptText="NUMER PRAWA JAZDY">
+                           <StackPane.margin>
+                              <Insets left="50.0" right="400.0" top="100.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <TextField fx:id="telefon" prefHeight="31.0" prefWidth="599.0" promptText="TELEFON">
+                           <StackPane.margin>
+                              <Insets left="50.0" right="400.0" top="200.0" />
+                           </StackPane.margin>
+                        </TextField>
+                            </children>
+                        </StackPane>
+                    </content>
+                </Tab>
+                <Tab text="USUŃ">
+                    <content>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <Label text="PODAJ ID KLIENTA KTÓREGO CHCESZ USUNĄĆ:" StackPane.alignment="TOP_LEFT">
+                                    <StackPane.margin>
+                                        <Insets left="50.0" top="100.0" />
+                                    </StackPane.margin>
+                                </Label>
+                                <TextField fx:id="deleteVehicleIdTextField" promptText="ID" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="400.0" left="50.0" right="400.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <Button fx:id="customerDelete" mnemonicParsing="false" text="USUŃ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" right="400.0" />
+                                    </StackPane.margin>
+                                </Button>
+                                <Button fx:id="customerListButtonDelete" mnemonicParsing="false" prefHeight="31.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="400.0" left="700.0" right="50.0" />
+                                    </StackPane.margin>
+                                </Button>
+                            </children>
+                        </StackPane>
+                    </content>
+                </Tab>
+                <Tab text="EDYTUJ">
+               <content>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TextField fx:id="nazwisko1" prefHeight="31.0" prefWidth="599.0" promptText="NAZWISKO" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets bottom="400.0" left="50.0" right="400.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <TextField fx:id="imie1" prefHeight="31.0" prefWidth="599.0" promptText="IMIĘ" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets bottom="300.0" left="50.0" right="400.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <TextField fx:id="pesel1" prefHeight="31.0" prefWidth="599.0" promptText="PESEL">
+                           <StackPane.margin>
+                              <Insets bottom="200.0" left="50.0" right="400.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <TextField fx:id="dataur1" prefHeight="31.0" prefWidth="599.0" promptText="DATA URODZENIA" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets bottom="100.0" left="50.0" right="400.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <TextField fx:id="adres1" prefHeight="31.0" prefWidth="599.0" promptText="ADRES" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets left="50.0" right="400.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <Button fx:id="EDITCustomer" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="EDYTUJ" StackPane.alignment="CENTER">
+                           <StackPane.margin>
+                              <Insets right="400.0" top="300.0" />
+                           </StackPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
+                           <image>
+                              <Image url="@../image/customer.png" />
+                           </image>
+                           <StackPane.margin>
+                              <Insets bottom="200.0" right="50.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <TextField fx:id="numerPrawaJazdy1" prefHeight="31.0" prefWidth="599.0" promptText="NUMER PRAWA JAZDY">
+                           <StackPane.margin>
+                              <Insets left="50.0" right="400.0" top="100.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <TextField fx:id="telefon1" prefHeight="31.0" prefWidth="599.0" promptText="TELEFON">
+                           <StackPane.margin>
+                              <Insets left="50.0" right="400.0" top="200.0" />
+                           </StackPane.margin>
+                        </TextField>
+                        <Button fx:id="customerListButtonEdit" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="LISTA KLIENTÓW" StackPane.alignment="CENTER">
+                           <cursor>
+                              <Cursor fx:constant="OPEN_HAND" />
+                           </cursor>
+                           <StackPane.margin>
+                              <Insets left="800.0" top="300.0" />
+                           </StackPane.margin>
+                        </Button>
+                     </children>
+                  </StackPane>
+               </content>
+                </Tab>
+                <Tab text="WYPISZ">
+                    <content>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                    <columns>
+                                        <TableColumn prefWidth="108.0" text="ID" />
+                                        <TableColumn prefWidth="117.0" text="NAZWISKO" />
+                                        <TableColumn minWidth="0.0" prefWidth="128.0" text="IMIĘ" />
+                                        <TableColumn minWidth="0.0" prefWidth="127.0" text="PESEL" />
+                                        <TableColumn prefWidth="145.0" text="DATA URODZENIA" />
+                                        <TableColumn minWidth="0.0" prefWidth="167.0" text="ADRES" />
+                                        <TableColumn prefWidth="200.0" text="NUMER PRAWA JAZDY" />
+                              <TableColumn prefWidth="134.0" text="TELEFON" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </StackPane>
+                    </content>
+                </Tab>
+            </tabs>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </TabPane>
+    </center>
+    <bottom>
+        <Button fx:id="mainMenuCar" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
+            <BorderPane.margin>
+                <Insets bottom="50.0" right="50.0" />
+            </BorderPane.margin>
+        </Button>
+    </bottom>
+</BorderPane>
