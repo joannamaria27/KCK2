@@ -5,7 +5,6 @@ import domain.Wypozyczenie;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -44,9 +43,6 @@ public class CarOptions {
         _ubezpieczenie = ubezpieczenie.getText();
         _dostepnosc = dostepnosc.getText();
 
-
-
-        System.out.println(_marka+_model+_stanPojazdu+_ubezpieczenie+_dostepnosc);
         DBConnector.getInstance().start();
         DBConnector.getInstance().addPojazd(new Pojazd("samochod", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
         DBConnector.getInstance().stop();
@@ -57,7 +53,6 @@ public class CarOptions {
         try {
             _id = Long.parseLong(id.getText());
         } catch (NumberFormatException e) {
-            // todo wyswietlanie informacji o zlym formacie gdzies w oknie
             System.out.println("zły format");
         }
         DBConnector.getInstance().start();
@@ -65,18 +60,17 @@ public class CarOptions {
         List<Wypozyczenie> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
 
         if(pojazd == null){
-            // todo wyswietlanie bledu ze nie ma takiego pojazdu w bazie
-            System.out.println("nie ma takiego pojazdu");
+            WindowSingleton.alert("Nie ma takiego pojazdu");
             DBConnector.getInstance().stop();
             return;
         }
         if(list.size()>0){
-            // todo sout przeniesc do okna
-            System.out.println("pojazd jest w trakcie wypozyczenia");
+            WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
             DBConnector.getInstance().stop();
             return;
         }
         // todo sout przeniesc do okna
+
         System.out.println("usunieto pojazd o id "+_id);
         DBConnector.getInstance().deletePojazd(pojazd);
         DBConnector.getInstance().stop();
@@ -90,6 +84,22 @@ public class CarOptions {
     public void showMainMenu() throws IOException, InterruptedException {
         // DBConnector dbConnector = DBConnector.getInstance();
         WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
+    }
+
+    public void showCarList(){
+//        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
+//        String[] elements = new String[list.size()];
+//        for (int i = 0; i < list.size(); i++) {
+//            Pojazd item = list.get(i);
+//            elements[i] = list.get(i).getId() + " - " + list.get(i).getMarka() + " - " + list.get(i).getModel() + " - " + list.get(i).getDostepnosc() + " - " + list.get(i).getId_ubezpieczenia() + " - " + list.get(i).getStan_pojazdu() + " - " + list.get(i).getTyp();
+//        }
+//
+//        for (int i = 0; i < elements.length; i++) {
+//            System.out.println(elements);
+//        }
+//        WindowSingleton.showList("Lista samochodów","ID - Marka - Model - Dostępność - ID ubezpieczenia - Stan pojazdu - Typ", elements);
+
+        WindowSingleton.showVehicleTable("samochod");
     }
 
 }

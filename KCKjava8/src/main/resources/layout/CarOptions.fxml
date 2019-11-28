@@ -75,17 +75,17 @@
                                         <Insets left="50.0" top="100.0" />
                                     </StackPane.margin>
                                 </Label>
-                                <TextField fx:id="id" promptText="ID" StackPane.alignment="CENTER">
+                                <TextField promptText="ID" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button mnemonicParsing="false" onAction="#deleteCarFromDB" text="USUŃ" StackPane.alignment="CENTER">
+                                <Button mnemonicParsing="false" text="USUŃ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" right="400.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="carListButton" mnemonicParsing="false" onMousePressed="#showCarsInNewWindow" prefHeight="31.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
+                                <Button fx:id="carListButton" mnemonicParsing="false" onAction="#showCarList" prefHeight="31.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="700.0" right="50.0" />
                                     </StackPane.margin>
@@ -185,7 +185,7 @@
         </TabPane>
     </center>
     <bottom>
-        <Button fx:id="mainMenuCar" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
+        <Button fx:id="mainMenuCar" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                 <Insets bottom="50.0" right="50.0" />
             </BorderPane.margin>
