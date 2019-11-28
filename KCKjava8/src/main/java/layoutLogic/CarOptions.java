@@ -2,9 +2,16 @@ package layoutLogic;
 
 import domain.Pojazd;
 import domain.Wypozyczenie;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +39,11 @@ public class CarOptions {
     @FXML
     private Button carListButton;
     @FXML
-    private static TextField deleteVehicleIdTextField;
+    private TextField deleteVehicleIdTextField;
+//    @FXML
+//    private TableView tableViewCarTab;
+    @FXML
+    private StackPane printCarsTabStackPane;
 //    @FXML
 //    private Button editCar;
 //    @FXML
@@ -96,25 +107,21 @@ public class CarOptions {
 
     @FXML
     public void showMainMenu() throws IOException, InterruptedException {
-        // DBConnector dbConnector = DBConnector.getInstance();
+        DBConnector dbConnector = DBConnector.getInstance();
         WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
     }
 
+
+
     public void showCarList() {
-//        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
-//        String[] elements = new String[list.size()];
-//        for (int i = 0; i < list.size(); i++) {
-//            Pojazd item = list.get(i);
-//            elements[i] = list.get(i).getId() + " - " + list.get(i).getMarka() + " - " + list.get(i).getModel() + " - " + list.get(i).getDostepnosc() + " - " + list.get(i).getId_ubezpieczenia() + " - " + list.get(i).getStan_pojazdu() + " - " + list.get(i).getTyp();
-//        }
-//
-//        for (int i = 0; i < elements.length; i++) {
-//            System.out.println(elements);
-//        }
-//        WindowSingleton.showList("Lista samochodów","ID - Marka - Model - Dostępność - ID ubezpieczenia - Stan pojazdu - Typ", elements);
-
-        WindowSingleton.showVehicleTable("samochod");
-
+        WindowSingleton.showVehicleTable("samochod", deleteVehicleIdTextField);
     }
+
+    public void printCarList(){
+        Scene scene = WindowSingleton.getInstance().getScene();
+        final TableView<Pojazd> table = WindowSingleton.createVehicleTable("samochod");
+        printCarsTabStackPane.getChildren().add(table);
+    }
+
 
 }

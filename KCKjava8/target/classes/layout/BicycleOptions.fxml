@@ -81,7 +81,7 @@
                                         <Insets bottom="400.0" left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="bicycleDelete" mnemonicParsing="false" text="USUŃ" StackPane.alignment="CENTER">
+                                <Button fx:id="bicycleDelete" mnemonicParsing="false" onAction="#deleteBicycleFromDB" text="USUŃ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" right="400.0" />
                                     </StackPane.margin>
@@ -123,9 +123,9 @@
                         </StackPane>
                     </content>
                 </Tab>
-                <Tab text="WYPISZ">
+                <Tab onSelectionChanged="#printBicycleList" text="WYPISZ">
                     <content>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                        <StackPane fx:id="printBicyclesTabStackPane" prefHeight="150.0" prefWidth="200.0">
                             <children>
                                 <TableView prefHeight="200.0" prefWidth="200.0">
                                     <columns>
@@ -217,7 +217,7 @@
         </TabPane>
     </center>
     <bottom>
-        <Button fx:id="mainMenu" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
+        <Button fx:id="mainMenu" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                 <Insets bottom="50.0" right="50.0" />
             </BorderPane.margin>

@@ -4,6 +4,7 @@ import domain.Pojazd;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -24,8 +25,27 @@ public class WindowSingleton {
     private Stage primaryStage;
     private Scene scene;
 
-    private WindowSingleton() {
+    public static void setInstance(WindowSingleton instance) {
+        WindowSingleton.instance = instance;
     }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    private WindowSingleton() { }
 
     public static WindowSingleton getInstance() {
         if (instance == null) {
@@ -59,40 +79,45 @@ public class WindowSingleton {
         window.showAndWait();
     }
 
-    public static void showList(String title, String _order, String[] elements) {
+    public static void showVehicleTable(String type, final TextField idField){
 
-        Button button = new Button("Wybierz");
         final Stage window = new Stage();
-        window.setTitle(title);
-        window.setMinWidth(600);
-        final String[] choice = new String[1];
-        int id;
-        Label order = new Label(_order);
-        final ListView<String> list = new ListView<String>();
+        Button button = new Button("Wybierz");
+        window.setTitle("Lista pojazdów typu \"" + type +"\"");
 
-        list.getItems().addAll(elements);
+
+        final TableView<Pojazd> table = createVehicleTable(type);
+        Pojazd pojazd = table.getSelectionModel().getSelectedItem();
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(table, button);
 
         button.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                choice[0] = list.getSelectionModel().getSelectedItem();
-                System.out.println(choice[0]);
+                Pojazd selection;
+                selection = table.getSelectionModel().getSelectedItem();
+                //System.out.println(selection.getId());
+                idField.setText(String.valueOf(selection.getId()));
                 window.close();
-
             }
         });
 
-        VBox layout = new VBox(5);
-        layout.getChildren().addAll(order, list, button);
-
-        Scene scene = new Scene(layout);
+        Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
+//        select.setOnAction(new EventHandler<ActionEvent>() {
+//            public void handle(ActionEvent e) {
+//                Pojazd selection;
+//                selection = table.getSelectionModel().getSelectedItem();
+//                //System.out.println(selection.getId());
+//
+//            }
+//        });
+
+
     }
 
-    public static void showVehicleTable(String type){
-
-        Stage window = new Stage();
-        window.setTitle("Lista pojazdów typu \"" + type +"\"");
+    public static TableView createVehicleTable(String type){
         final TableView<Pojazd> table;
 //        final Button select = new Button("Select");
 //        String choice = "";
@@ -131,27 +156,12 @@ public class WindowSingleton {
         table.setItems(WindowSingleton.getVehiclesObservableList(type));
         table.getColumns().addAll(idColumn, markaColumn, modelColumn, idUbezpieczeniaColumn, stanPojazduColumn, dostepnosColumn);
 
-        VBox vBox = new VBox();
-        vBox.getChildren().addAll(table);
-
-        Scene scene = new Scene(vBox);
-        window.setScene(scene);
-        window.show();
-//        select.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                Pojazd selection;
-//                selection = table.getSelectionModel().getSelectedItem();
-//                //System.out.println(selection.getId());
-//
-//            }
-//        });
-
-
+        return table;
     }
 
     private static ObservableList<Pojazd> getVehiclesObservableList(String type){
         ObservableList<Pojazd> vehicles = FXCollections.observableArrayList();
-        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
+        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='"+type+"'", Pojazd.class).getResultList();
 
         for (Pojazd pojazd : list) {
             vehicles.add(pojazd);

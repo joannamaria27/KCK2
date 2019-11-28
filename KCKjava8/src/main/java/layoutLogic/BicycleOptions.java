@@ -3,8 +3,11 @@ package layoutLogic;
 import domain.Pojazd;
 import domain.Wypozyczenie;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +35,9 @@ public class BicycleOptions {
     @FXML
     private Button bicycleListButton;
     @FXML
-    private static TextField deleteVehicleIdTextField;
+    private TextField deleteVehicleIdTextField;
+    @FXML
+    private StackPane printBicyclesTabStackPane;
 //    @FXML
 //    private Button editBicycle;
 //    @FXML
@@ -59,9 +64,9 @@ public class BicycleOptions {
         _dostepnosc = dostepnosc.getText();
 
         DBConnector.getInstance().start();
-        DBConnector.getInstance().addPojazd(new Pojazd("samochod", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
+        DBConnector.getInstance().addPojazd(new Pojazd("rower", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
         DBConnector.getInstance().stop();
-        WindowSingleton.alert("Dodano pojazd");
+        WindowSingleton.alert("Dodano rower");
     }
 
     @FXML
@@ -76,19 +81,19 @@ public class BicycleOptions {
         List<Wypozyczenie> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
 
         if (pojazd == null) {
-            WindowSingleton.alert("Nie ma takiego pojazdu");
+            WindowSingleton.alert("Nie ma takiego roweru");
             DBConnector.getInstance().stop();
             return;
         }
         if (list.size() > 0) {
-            WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
+            WindowSingleton.alert("Rower jest w trakcie wypożyczenia");
             DBConnector.getInstance().stop();
             return;
         }
         // todo sout przeniesc do okna
 
-        WindowSingleton.alert("Usunięto pojazd o id = " + _id);
-        System.out.println("usunieto pojazd o id " + _id);
+        WindowSingleton.alert("Usunięto rower o id = " + _id);
+        System.out.println("usunieto rower o id " + _id);
         DBConnector.getInstance().deletePojazd(pojazd);
         DBConnector.getInstance().stop();
     }
@@ -101,20 +106,13 @@ public class BicycleOptions {
     }
 
     public void showBicycleList() {
-//        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
-//        String[] elements = new String[list.size()];
-//        for (int i = 0; i < list.size(); i++) {
-//            Pojazd item = list.get(i);
-//            elements[i] = list.get(i).getId() + " - " + list.get(i).getMarka() + " - " + list.get(i).getModel() + " - " + list.get(i).getDostepnosc() + " - " + list.get(i).getId_ubezpieczenia() + " - " + list.get(i).getStan_pojazdu() + " - " + list.get(i).getTyp();
-//        }
-//
-//        for (int i = 0; i < elements.length; i++) {
-//            System.out.println(elements);
-//        }
-//        WindowSingleton.showList("Lista samochodów","ID - Marka - Model - Dostępność - ID ubezpieczenia - Stan pojazdu - Typ", elements);
+        WindowSingleton.showVehicleTable("rower", deleteVehicleIdTextField);
+    }
 
-        WindowSingleton.showVehicleTable("samochod");
-
+    public void printBicycleList(){
+        Scene scene = WindowSingleton.getInstance().getScene();
+        final TableView<Pojazd> table = WindowSingleton.createVehicleTable("rower");
+        printBicyclesTabStackPane.getChildren().add(table);
     }
 
 }

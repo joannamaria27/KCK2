@@ -47,7 +47,7 @@
                                         <Insets left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="addScooter" mnemonicParsing="false" onMousePressed="#addScooterToDB" prefHeight="39.0" prefWidth="186.0" text="DODAJ" StackPane.alignment="CENTER">
+                                <Button fx:id="addScooter" mnemonicParsing="false" onAction="#addScooterToDB" onMousePressed="#addScooterToDB" prefHeight="39.0" prefWidth="186.0" text="DODAJ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets right="400.0" top="100.0" />
                                     </StackPane.margin>
@@ -81,7 +81,7 @@
                                         <Insets bottom="400.0" left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="scooterDelete" mnemonicParsing="false" text="USUŃ" StackPane.alignment="CENTER">
+                                <Button fx:id="scooterDelete" mnemonicParsing="false" onAction="#deleteScooterFromDB" text="USUŃ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" right="400.0" />
                                     </StackPane.margin>
@@ -123,9 +123,9 @@
                         </StackPane>
                     </content>
                 </Tab>
-                <Tab text="WYPISZ">
+                <Tab onSelectionChanged="#printScooterList" text="WYPISZ">
                     <content>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                        <StackPane fx:id="printScooterTabStackPane" prefHeight="150.0" prefWidth="200.0">
                             <children>
                                 <TableView prefHeight="200.0" prefWidth="200.0">
                                     <columns>
@@ -171,12 +171,12 @@
                                         <Insets left="50.0" right="400.0" top="250.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="editListButton11" mnemonicParsing="false"  prefHeight="40.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                                <Button fx:id="editListButton11" mnemonicParsing="false" prefHeight="40.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="850.0" top="150.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="editListButton111" mnemonicParsing="false"  prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                                <Button fx:id="editListButton111" mnemonicParsing="false" prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="850.0" top="250.0" />
                                     </StackPane.margin>
@@ -217,7 +217,7 @@
         </TabPane>
     </center>
     <bottom>
-        <Button fx:id="mainMenu" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
+        <Button fx:id="mainMenu" mnemonicParsing="false" onAction="#showMainMenu" prefHeight="31.0" prefWidth="129.0" text="MENU GŁÓWNE" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                 <Insets bottom="50.0" right="50.0" />
             </BorderPane.margin>
