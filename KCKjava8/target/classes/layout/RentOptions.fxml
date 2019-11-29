@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -9,60 +8,122 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.Cursor?>
 <BorderPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layoutLogic.car.CarOptions">
     <center>
         <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
             <tabs>
-                <Tab text="DODAJ">
+                <Tab onSelectionChanged="#printCarList" text="WYPISZ">
+                    <content>
+                        <StackPane fx:id="printCarsTabStackPane" prefHeight="150.0" prefWidth="200.0">
+                            <children>
+                                <TableView prefHeight="200.0" prefWidth="200.0">
+                                    <columns>
+                                        <TableColumn prefWidth="108.0" text="ID" />
+                                        <TableColumn prefWidth="117.0" text="POJAZD" />
+                                        <TableColumn minWidth="0.0" prefWidth="128.0" text="KLIENT" />
+                                        <TableColumn minWidth="0.0" prefWidth="190.0" text="DATA WYPOZYCZENIA" />
+                                        <TableColumn prefWidth="172.0" text="DATA ODDANIA" />
+                                        <TableColumn minWidth="0.0" prefWidth="157.0" text="KOD DOSTĘPU" />
+                                        <TableColumn prefWidth="134.0" text="CENA" />
+                              <TableColumn prefWidth="162.0" text="PRACOWNIK" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </StackPane>
+                    </content>
+                </Tab>
+                <Tab text="EDYTUJ">
                     <content>
                         <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;">
                             <children>
-                                <TextField fx:id="marka" prefHeight="31.0" prefWidth="599.0" promptText="MARKA" StackPane.alignment="CENTER">
+                                <Label text="PODAJ ID SAMOCHODU KTÓRY CHCESZ EDYTOWAĆ:" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
-                                        <Insets bottom="400.0" left="50.0" right="400.0" />
+                                        <Insets left="50.0" top="100.0" />
+                                    </StackPane.margin>
+                                </Label>
+                                <TextField fx:id="editVehicleIdTextField" promptText="ID" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="400.0" left="50.0" right="50.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="model" prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MARKA" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets bottom="300.0" left="50.0" right="400.0" />
+                                        <Insets bottom="400.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="stanPojazdu" prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU">
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets bottom="200.0" left="50.0" right="400.0" />
+                                        <Insets bottom="300.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="ubezpieczenie" prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets bottom="100.0" left="50.0" right="400.0" />
+                                        <Insets bottom="200.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="dostepnosc" prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" />
+                                        <Insets bottom="100.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="addCar" mnemonicParsing="false" onMousePressed="#addCarToDB" prefHeight="39.0" prefWidth="186.0" text="DODAJ" StackPane.alignment="CENTER">
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets right="400.0" top="100.0" />
+                                        <Insets left="50.0" right="650.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <Button fx:id="addCar1" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="ZATWIERDZ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets right="650.0" top="400.0" />
                                     </StackPane.margin>
                                     <cursor>
                                         <Cursor fx:constant="OPEN_HAND" />
                                     </cursor>
                                 </Button>
-                                <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_RIGHT">
-                                    <image>
-                                        <Image url="@../image/car.png" />
-                                    </image>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets bottom="200.0" right="50.0" />
+                                        <Insets bottom="100.0" left="650.0" right="50.0" top="300.0" />
                                     </StackPane.margin>
-                                </ImageView>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="200.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="793.0" promptText="MARKA" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="400.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <Button fx:id="addCshowDeleteCarListar11" mnemonicParsing="false" onAction="#showDeleteCarList" prefHeight="39.0" prefWidth="186.0" text="LISTA SAMOCHODÓW" StackPane.alignment="CENTER">
+                                    <cursor>
+                                        <Cursor fx:constant="OPEN_HAND" />
+                                    </cursor>
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" left="650.0" />
+                                    </StackPane.margin>
+                                </Button>
+                                <Button fx:id="addCar12" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="EDYTUJ" StackPane.alignment="CENTER">
+                                    <cursor>
+                                        <Cursor fx:constant="OPEN_HAND" />
+                                    </cursor>
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" right="650.0" />
+                                    </StackPane.margin>
+                                </Button>
                             </children>
                         </StackPane>
                     </content>
@@ -81,131 +142,16 @@
                                         <Insets bottom="400.0" left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="carDelete" mnemonicParsing="false" onAction="#deleteCarFromDB" text="USUŃ" StackPane.alignment="CENTER">
+                                <Button fx:id="customerDelete" mnemonicParsing="false" onAction="#deleteCarFromDB" text="USUŃ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" right="400.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="carListButton" mnemonicParsing="false" onAction="#showDeleteCarList" prefHeight="31.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
+                                <Button fx:id="customerListButton" mnemonicParsing="false" onAction="#showDeleteCarList" prefHeight="31.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="700.0" right="50.0" />
                                     </StackPane.margin>
                                 </Button>
-                            </children>
-                        </StackPane>
-                    </content>
-                </Tab>
-                <Tab text="EDYTUJ">
-                    <content>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <Label text="PODAJ ID SAMOCHODU KTÓRY CHCESZ EDYTOWAĆ:" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" top="100.0" />
-                                    </StackPane.margin>
-                                </Label>
-                                <TextField fx:id="editVehicleIdTextField" promptText="ID" StackPane.alignment="CENTER">
-                                    <StackPane.margin>
-                                        <Insets bottom="400.0" left="50.0" right="400.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <Button fx:id="carEditM" mnemonicParsing="false" text="EDYTUJ" StackPane.alignment="CENTER">
-                                    <StackPane.margin>
-                                        <Insets bottom="300.0" right="400.0" />
-                                    </StackPane.margin>
-                                </Button>
-                                <Button fx:id="editListButton" mnemonicParsing="false" onAction="#showEditCarList" prefHeight="31.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
-                                    <StackPane.margin>
-                                        <Insets bottom="400.0" left="700.0" right="50.0" />
-                                    </StackPane.margin>
-                                </Button>
-                            </children>
-                        </StackPane>
-                    </content>
-                </Tab>
-                <Tab onSelectionChanged="#printCarList" text="WYPISZ">
-                    <content>
-                        <StackPane fx:id="printCarsTabStackPane" prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <TableView prefHeight="200.0" prefWidth="200.0">
-                                    <columns>
-                                        <TableColumn prefWidth="108.0" text="ID" />
-                                        <TableColumn prefWidth="117.0" text="TYP" />
-                                        <TableColumn minWidth="0.0" prefWidth="128.0" text="MARKA" />
-                                        <TableColumn minWidth="0.0" prefWidth="127.0" text="MODEL" />
-                                        <TableColumn prefWidth="145.0" text="UBEZPIECZENIE" />
-                                        <TableColumn minWidth="0.0" prefWidth="167.0" text="STAN POJAZDU" />
-                                        <TableColumn prefWidth="143.0" text="DOSTĘPNOŚĆ" />
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </StackPane>
-                    </content>
-                </Tab>
-                <Tab text="WYPOŻYCZ">
-                    <content>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                            <children>
-                                <Label text="PODAJ ID SAMOCHODU KTÓRY CHCESZ WYPOŻYCZYĆ:" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" top="100.0" />
-                                    </StackPane.margin>
-                                </Label>
-                                <TextField fx:id="rentVehicleVehicleId" promptText="ID" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="150.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <Button fx:id="rentCarButton" mnemonicParsing="false" onAction="#rentCar" text="WYPOŻYCZ" StackPane.alignment="CENTER">
-                                    <StackPane.margin>
-                                        <Insets right="400.0" top="400.0" />
-                                    </StackPane.margin>
-                                </Button>
-                                <Label text="PODAJ ID KLIENTA KTÓRY CHCESZ WYPOŻYCZYĆ:" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="200.0" />
-                                    </StackPane.margin>
-                                </Label>
-                                <TextField fx:id="rentVehicleClientId" promptText="ID" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="250.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <Button fx:id="editListButton11" mnemonicParsing="false" onAction="#showRentCarList" prefHeight="40.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="850.0" top="150.0" />
-                                    </StackPane.margin>
-                                </Button>
-                                <Button fx:id="editListButton111" mnemonicParsing="false" onAction="#showClientList" prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="850.0" top="250.0" />
-                                    </StackPane.margin>
-                                </Button>
-                                <TextField fx:id="rentCarBegDateTextField" promptText="DATA WYPOŻYCZENIA" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="350.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <TextField fx:id="rentCarRetDateTextField" promptText="DATA ODDANIA" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="400.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <TextField fx:id="accessCodeTextField" promptText="KOD DOSTĘPU" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets bottom="350.0" left="50.0" right="400.0" top="450.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <TextField fx:id="priceTextField" promptText="CENA" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="500.0" />
-                                    </StackPane.margin>
-                                </TextField>
-                                <TextField fx:id="employeeTextField" promptText="PRACOWNIK" StackPane.alignment="TOP_LEFT">
-                                    <StackPane.margin>
-                                        <Insets left="50.0" right="400.0" top="550.0" />
-                                    </StackPane.margin>
-                                </TextField>
                             </children>
                         </StackPane>
                     </content>
