@@ -47,7 +47,7 @@
                                         <Insets left="50.0" right="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="addCar" mnemonicParsing="false" onMousePressed="#addCarToDB" prefHeight="39.0" prefWidth="186.0" text="DODAJ" StackPane.alignment="CENTER">
+                                <Button fx:id="addCar" mnemonicParsing="false" onAction="#addCarToDB" prefHeight="39.0" prefWidth="186.0" text="DODAJ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets right="400.0" top="100.0" />
                                     </StackPane.margin>

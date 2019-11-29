@@ -59,12 +59,12 @@
    <bottom>
       <StackPane prefHeight="50.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="291.0" text="WYPOŻYCZENIA" StackPane.alignment="CENTER_RIGHT">
+            <Button mnemonicParsing="false" onAction="#openRentMenu" prefHeight="31.0" prefWidth="291.0" text="WYPOŻYCZENIA" StackPane.alignment="CENTER_RIGHT">
                <StackPane.margin>
                   <Insets right="50.0" />
                </StackPane.margin>
             </Button>
-            <Button fx:id="customerMain" mnemonicParsing="false" prefHeight="31.0" prefWidth="291.0" text="KLIENCI" StackPane.alignment="CENTER_LEFT">
+            <Button fx:id="customerMain" mnemonicParsing="false" onAction="#openClientMenu" prefHeight="31.0" prefWidth="291.0" text="KLIENCI" StackPane.alignment="CENTER_LEFT">
                <StackPane.margin>
                   <Insets left="50.0" />
                </StackPane.margin>

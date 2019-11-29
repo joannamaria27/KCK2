@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -292,6 +293,7 @@ public class WindowSingleton {
 
     public void startApp(Stage stage) throws IOException, InterruptedException {
         primaryStage = stage;
+        primaryStage.getIcons().add(new Image("image/WindowIcon.png"));
         setLayout("/layout/WelcomeScreen.fxml");
         //WelcomeScreen.ProgressMax();
 

@@ -86,7 +86,7 @@
                                         <Insets bottom="300.0" right="400.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="scooterListButton" mnemonicParsing="false" onAction="#showScooterList" prefHeight="31.0" prefWidth="201.0" text="LISTA SKUTERÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
+                                <Button fx:id="scooterListButton" mnemonicParsing="false" onAction="#showDeleteScooterList" prefHeight="31.0" prefWidth="201.0" text="LISTA SKUTERÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="700.0" right="50.0" />
                                     </StackPane.margin>
@@ -109,32 +109,32 @@
                                         <Insets bottom="400.0" left="50.0" right="50.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MARKA" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterNewMarkaTextField" prefHeight="31.0" prefWidth="599.0" promptText="MARKA" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterNewModelTextField" prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterNewStanPojazduTextField" prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="200.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterNewUbezpieczenieTextField" prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="100.0" left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterNewDostepnoscTextField" prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="650.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="submitScooter" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="ZATWIERDZ" StackPane.alignment="CENTER">
+                                <Button fx:id="editScooterButton" mnemonicParsing="false" onAction="#editScooter" prefHeight="39.0" prefWidth="186.0" text="ZATWIERDZ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets right="650.0" top="400.0" />
                                     </StackPane.margin>
@@ -142,32 +142,32 @@
                                         <Cursor fx:constant="OPEN_HAND" />
                                     </cursor>
                                 </Button>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterUbezpieczenieTextField" disable="true" prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="100.0" left="650.0" right="50.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterStanPojazduTextField" disable="true" prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="200.0" left="650.0" right="50.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="793.0" promptText="MARKA" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterMarkaTextField" disable="true" prefHeight="31.0" prefWidth="793.0" promptText="MARKA" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="400.0" left="650.0" right="50.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterModelTextField" disable="true" prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets bottom="300.0" left="650.0" right="50.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
+                                <TextField fx:id="editScooterDostepnoscTextField" disable="true" prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets left="650.0" right="50.0" top="300.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="scooterList" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="LISTA SKUTERÓW" StackPane.alignment="CENTER">
+                                <Button fx:id="editScooterListButton" mnemonicParsing="false" onAction="#showEditScooterList" prefHeight="39.0" prefWidth="186.0" text="LISTA SKUTERÓW" StackPane.alignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="OPEN_HAND" />
                                     </cursor>
@@ -175,7 +175,7 @@
                                         <Insets bottom="300.0" left="650.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="editScooter" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="EDYTUJ" StackPane.alignment="CENTER">
+                                <Button fx:id="setEditedScooterButton" mnemonicParsing="false" onAction="#fillEditedScooterFields" prefHeight="39.0" prefWidth="186.0" text="EDYTUJ" StackPane.alignment="CENTER">
                                     <cursor>
                                         <Cursor fx:constant="OPEN_HAND" />
                                     </cursor>
@@ -215,12 +215,12 @@
                                         <Insets left="50.0" top="100.0" />
                                     </StackPane.margin>
                                 </Label>
-                                <TextField fx:id="editVehicleIdTextField1" promptText="ID" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="rentVehicleVehicleId" promptText="ID" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="400.0" top="150.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="scooterRent" mnemonicParsing="false" text="WYPOŻYCZ" StackPane.alignment="CENTER">
+                                <Button fx:id="rentScooterButton" mnemonicParsing="false" onAction="#rentScooter" text="WYPOŻYCZ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets right="400.0" top="400.0" />
                                     </StackPane.margin>
@@ -230,42 +230,42 @@
                                         <Insets left="50.0" right="400.0" top="200.0" />
                                     </StackPane.margin>
                                 </Label>
-                                <TextField fx:id="editVehicleIdTextField11" promptText="ID" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="rentVehicleClientId" promptText="ID" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="400.0" top="250.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="ScooterListButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="201.0" text="LISTA SKUTERÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                                <Button fx:id="ScooterListButton" mnemonicParsing="false" onAction="#showRentScooterList" prefHeight="40.0" prefWidth="201.0" text="LISTA SKUTERÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="850.0" top="150.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="customerListButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                                <Button fx:id="customerListButton" mnemonicParsing="false" onAction="#showClientList" prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="850.0" top="250.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <TextField fx:id="editVehicleIdTextField111" promptText="DATA WYPOŻYCZENIA" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="rentScooterBegDateTextField" promptText="DATA WYPOŻYCZENIA" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="400.0" top="350.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="editVehicleIdTextField1111" promptText="DATA ODDANIA" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="rentScooterRetDateTextField" promptText="DATA ODDANIA" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="400.0" top="400.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="editVehicleIdTextField11111" promptText="KOD DOSTĘPU" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="accessCodeTextField" promptText="KOD DOSTĘPU" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets bottom="350.0" left="50.0" right="400.0" top="450.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="editVehicleIdTextField11112" promptText="CENA" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="priceTextField" promptText="CENA" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="400.0" top="500.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <TextField fx:id="editVehicleIdTextField11113" promptText="PRACOWNIK" StackPane.alignment="TOP_LEFT">
+                                <TextField fx:id="employeeTextField" promptText="PRACOWNIK" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="50.0" right="400.0" top="550.0" />
                                     </StackPane.margin>
