@@ -125,6 +125,12 @@ public class ScooterOptions {
         DBConnector.getInstance().addPojazd(new Pojazd("skuter", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano pojazd");
+
+        marka.setText("");
+        model.setText("");
+        stanPojazdu.setText("");
+        ubezpieczenie.setText("");
+        dostepnosc.setText("");
     }
 
     @FXML
@@ -153,6 +159,8 @@ public class ScooterOptions {
         System.out.println("usunieto pojazd o id " + _id);
         DBConnector.getInstance().deletePojazd(pojazd);
         DBConnector.getInstance().stop();
+        deleteVehicleIdTextField.setText("");
+
         deleteVehicleIdTextField.setText("");
     }
 
@@ -231,9 +239,24 @@ public class ScooterOptions {
 
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano wypożyczenie");
+
+        rentScooterBegDateTextField.setText("");
+        rentScooterRetDateTextField.setText("");
+        accessCodeTextField.setText("");
+        employeeTextField.setText("");
+        rentVehicleVehicleId.setText("");
+        rentVehicleClientId.setText("");
+        priceTextField.setText("");
     }
 
     public void fillEditedScooterFields() {
+        try {
+            _id = Long.parseLong(editVehicleIdTextField.getText());
+        } catch (NumberFormatException e) {
+            WindowSingleton.alert("Zły format");
+            return;
+        }
+
         System.out.println("gettext: \n" + editScooterNewMarkaTextField.getText() + "\"");
         Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(editVehicleIdTextField.getText()));
         if (pojazd == null) {
@@ -283,6 +306,14 @@ public class ScooterOptions {
         pojazd.setParameters(newScooterDetails);
         DBConnector.getInstance().editPojazd(pojazd);
         WindowSingleton.alert("Zedytowano pojazd");
+
+        rentScooterBegDateTextField.setText("");
+        rentScooterRetDateTextField.setText("");
+        accessCodeTextField.setText("");
+        employeeTextField.setText("");
+        rentVehicleVehicleId.setText("");
+        rentVehicleClientId.setText("");
+        priceTextField.setText("");
     }
 
 }

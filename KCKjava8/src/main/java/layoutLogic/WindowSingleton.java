@@ -2,6 +2,7 @@ package layoutLogic;
 
 import domain.Klient;
 import domain.Pojazd;
+import domain.Wypozyczenie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,6 +47,8 @@ public class WindowSingleton {
         final Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Alert");
+        window.setResizable(false);
+        window.getIcons().add(new Image("image/AlertIcon.png"));
         window.setMinWidth(356);
         window.setMinHeight(220);
 
@@ -92,16 +95,6 @@ public class WindowSingleton {
         Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
-//        select.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                Pojazd selection;
-//                selection = table.getSelectionModel().getSelectedItem();
-//                //System.out.println(selection.getId());
-//
-//            }
-//        });
-
-
     }
 
     public static void showClientTable(final TextField idField) {
@@ -130,16 +123,34 @@ public class WindowSingleton {
         Scene scene = new Scene(vBox);
         window.setScene(scene);
         window.show();
-//        select.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent e) {
-//                Pojazd selection;
-//                selection = table.getSelectionModel().getSelectedItem();
-//                //System.out.println(selection.getId());
-//
-//            }
-//        });
+    }
+
+    public static void showRentTable(final TextField idField) {
+
+        final Stage window = new Stage();
+        Button button = new Button("Wybierz");
+        window.setTitle("Lista wypożyczeń");
 
 
+        final TableView<Wypozyczenie> table = createRentsTable();
+        Wypozyczenie wypozyczenie = table.getSelectionModel().getSelectedItem();
+
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(table, button);
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                Wypozyczenie selection;
+                selection = table.getSelectionModel().getSelectedItem();
+                //System.out.println(selection.getId());
+                idField.setText(String.valueOf(selection.getId()));
+                window.close();
+            }
+        });
+
+        Scene scene = new Scene(vBox);
+        window.setScene(scene);
+        window.show();
     }
 
     public static TableView createVehicleTable(String type) {
@@ -236,6 +247,61 @@ public class WindowSingleton {
         return table;
     }
 
+    public static TableView createRentsTable() {
+        final TableView<Wypozyczenie> table;
+//        final Button select = new Button("Select");
+//        String choice = "";
+
+        // id
+        TableColumn<Wypozyczenie, Long> idColumn = new TableColumn<Wypozyczenie, Long>("ID");
+        idColumn.setMinWidth(50);
+        idColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Long>("id"));
+
+
+        // todo id pojazdu i klienta nie wyswietla sie w tabeli :c
+        // id samochodu
+        TableColumn<Wypozyczenie, Long> carIdColumn = new TableColumn<Wypozyczenie, Long>("ID pojazdu");
+        carIdColumn.setMinWidth(100);
+        carIdColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Long>("id_pojazdu_id"));
+
+        // id klienta
+        TableColumn<Wypozyczenie, Klient> clientIdColumn = new TableColumn<Wypozyczenie, Klient>("ID klienta");
+        clientIdColumn.setMinWidth(100);
+        clientIdColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Klient>("id_klienta_id"));
+
+        // cena
+        TableColumn<Wypozyczenie, Float> priceColumn = new TableColumn<Wypozyczenie, Float>("Cena");
+        priceColumn.setMinWidth(100);
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Float>("cena"));
+
+        // data rozpoczecia
+        TableColumn<Wypozyczenie, String> begDateColumn = new TableColumn<Wypozyczenie, String>("Data wypożyczenia");
+        begDateColumn.setMinWidth(100);
+        begDateColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, String>("data_wypozyczenia"));
+
+        // data zakonczenia
+        TableColumn<Wypozyczenie, String> retDateColumn = new TableColumn<Wypozyczenie, String>("Data oddania");
+        retDateColumn.setMinWidth(100);
+        retDateColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, String>("data_oddania"));
+
+        // kod dostepu
+        TableColumn<Wypozyczenie, String> accessCodeColumn = new TableColumn<Wypozyczenie, String>("Kod dostępu");
+        accessCodeColumn.setMinWidth(100);
+        accessCodeColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, String>("kod_dostepu"));
+
+        // pracownik
+        TableColumn<Wypozyczenie, String> employeeColumn = new TableColumn<Wypozyczenie, String>("Pracownik");
+        employeeColumn.setMinWidth(100);
+        employeeColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, String>("pracownik"));
+
+
+        table = new TableView<Wypozyczenie>();
+        table.setItems(WindowSingleton.getRentObservableList());
+        table.getColumns().addAll(idColumn, carIdColumn, clientIdColumn, priceColumn, begDateColumn, retDateColumn, accessCodeColumn, employeeColumn);
+
+        return table;
+    }
+
     private static ObservableList<Pojazd> getVehiclesObservableList(String type) {
         ObservableList<Pojazd> vehicles = FXCollections.observableArrayList();
         List<Pojazd> list = DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Pojazd a WHERE typ='" + type + "'", Pojazd.class).getResultList();
@@ -254,6 +320,16 @@ public class WindowSingleton {
             clients.add(klient);
         }
         return clients;
+    }
+
+    private static ObservableList<Wypozyczenie> getRentObservableList() {
+        ObservableList<Wypozyczenie> rents = FXCollections.observableArrayList();
+        List<Wypozyczenie> list = DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a ", Wypozyczenie.class).getResultList();
+
+        for (Wypozyczenie wypozyczenie : list) {
+            rents.add(wypozyczenie);
+        }
+        return rents;
     }
 
     public Stage getPrimaryStage() {
@@ -293,6 +369,7 @@ public class WindowSingleton {
 
     public void startApp(Stage stage) throws IOException, InterruptedException {
         primaryStage = stage;
+        primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("image/WindowIcon.png"));
         setLayout("/layout/WelcomeScreen.fxml");
         //WelcomeScreen.ProgressMax();

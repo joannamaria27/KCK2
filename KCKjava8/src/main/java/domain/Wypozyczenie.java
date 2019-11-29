@@ -102,14 +102,14 @@ public class Wypozyczenie {
 //        Pojazd p = entityManager.find(Pojazd.class, Long.parseLong(choices[0]));
 //        entityManager.getTransaction().commit();
 //        id_pojazdu = p;
-        data_wypozyczenia = choices[1];
-        data_oddania=choices[2];
-        kod_dostepu = choices[3];
+        data_wypozyczenia = choices[0];
+        data_oddania=choices[1];
+        kod_dostepu = choices[2];
 
 //todo
         //id_klienta = choices[4];
-        cena=Float.parseFloat(choices[5]);
-        pracownik=choices[6];
+        cena=Float.parseFloat(choices[3]);
+        pracownik=choices[4];
 
     }
 

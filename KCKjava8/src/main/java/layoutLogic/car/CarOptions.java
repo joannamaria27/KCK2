@@ -119,6 +119,13 @@ public class CarOptions {
         DBConnector.getInstance().addPojazd(new Pojazd("samochod", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano pojazd");
+
+        marka.setText("");
+        model.setText("");
+        stanPojazdu.setText("");
+        ubezpieczenie.setText("");
+        dostepnosc.setText("");
+
     }
 
     @FXML
@@ -220,21 +227,35 @@ public class CarOptions {
 
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano wypożyczenie");
+
+        rentCarBegDateTextField.setText("");
+        rentCarRetDateTextField.setText("");
+        accessCodeTextField.setText("");
+        employeeTextField.setText("");
+        rentVehicleVehicleId.setText("");
+        rentVehicleClientId.setText("");
+        priceTextField.setText("");
     }
 
     public void fillEditedCarFields() {
-        System.out.println("gettext: \n" + editCarNewMarkaTextField.getText() + "\"");
+        try {
+            _id = Long.parseLong(editVehicleIdTextField.getText());
+        } catch (NumberFormatException e) {
+            System.out.println("zły format");
+            WindowSingleton.alert("Zły format");
+            return;
+        }
         Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(editVehicleIdTextField.getText()));
         if (pojazd == null) {
             WindowSingleton.alert("Nie ma pojazdu o tym ID");
             return;
         }
 
-        editCarMarkaTextField.setText("Marka - " + pojazd.getMarka());
-        editCarModelTextField.setText("Model - " + pojazd.getModel());
-        editCarStanPojazduTextField.setText("Stan pojazdu - " + pojazd.getStan_pojazdu());
-        editCarUbezpieczenieTextField.setText("Ubezpieczenie - " + pojazd.getId_ubezpieczenia());
-        editCarDostepnoscTextField.setText("Dostępność - " + pojazd.getDostepnosc());
+        editCarMarkaTextField.setText("MARKA - " + pojazd.getMarka());
+        editCarModelTextField.setText("MODEL - " + pojazd.getModel());
+        editCarStanPojazduTextField.setText("STAN POJAZDU - " + pojazd.getStan_pojazdu());
+        editCarUbezpieczenieTextField.setText("UBEZPIECZENIE - " + pojazd.getId_ubezpieczenia());
+        editCarDostepnoscTextField.setText("DOSTĘPNOŚĆ - " + pojazd.getDostepnosc());
 
     }
 
@@ -272,6 +293,18 @@ public class CarOptions {
         pojazd.setParameters(newCarDetails);
         DBConnector.getInstance().editPojazd(pojazd);
         WindowSingleton.alert("Zedytowano pojazd");
+
+        editVehicleIdTextField.setText("");
+        editCarMarkaTextField.setText("");
+        editCarModelTextField.setText("");
+        editCarUbezpieczenieTextField.setText("");
+        editCarStanPojazduTextField.setText("");
+        editCarDostepnoscTextField.setText("");
+        editCarNewMarkaTextField.setText("");
+        editCarNewModelTextField.setText("");
+        editCarNewUbezpieczenieTextField.setText("");
+        editCarNewStanPojazduTextField.setText("");
+        editCarNewDostepnoscTextField.setText("");
     }
 
 
