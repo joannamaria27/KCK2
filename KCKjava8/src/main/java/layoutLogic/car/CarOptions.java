@@ -173,10 +173,11 @@ public class CarOptions {
         Wypozyczenie wypozyczenie = new Wypozyczenie();
         Pojazd pojazd = (Pojazd) DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(rentVehicleVehicleId.getText()));
         Klient klient = (Klient) DBConnector.getInstance().getEntityManager().find(Klient.class, Long.parseLong(rentVehicleClientId.getText()));
+        DBConnector.getInstance().start();
         DBConnector.getInstance().addWypozyczenie(new Wypozyczenie(pojazd, editCarBegDateTextField.getText(), editCarRetDateTextField.getText(), accessCodeTextField.getText(), klient, _price, employeeTextField.getText()));
 
-        DBConnector.getInstance().start();
-        DBConnector.getInstance().addWypozyczenie(wypozyczenie);
+
+//        DBConnector.getInstance().addWypozyczenie(wypozyczenie);
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano wypożyczenie");
     }
