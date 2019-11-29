@@ -12,21 +12,9 @@ import java.util.List;
 
 public class DBConnector {
 
-    EntityManagerFactory entityManagerFactory;
-    EntityManager entityManager;
-
-    public static DBConnector getInstance() {
-        if (instance == null) instance = new DBConnector();
-        return instance;
-    }
-
     private static DBConnector instance;
-
-    public void start(){
-        //entityManagerFactory = Persistence.createEntityManagerFactory("wypozyczalnia");
-        //entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-    }
+    private EntityManagerFactory entityManagerFactory;
+    private EntityManager entityManager;
 
     private DBConnector() {
         entityManagerFactory = Persistence.createEntityManagerFactory("wypozyczalnia");
@@ -42,6 +30,45 @@ public class DBConnector {
 //        wypozyczenie.setKod_dostepu(4444);
 
 
+    }
+
+    public static DBConnector getInstance() {
+        if (instance == null) instance = new DBConnector();
+        return instance;
+    }
+
+    public static List<Pojazd> getAllCars() throws IOException {
+        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
+    }
+
+    public static List<Pojazd> getAllScooters() throws IOException {
+        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Skuter'", Pojazd.class).getResultList();
+    }
+
+    public static List<Wypozyczenie> getAllRental() throws IOException {
+        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Wypozyczenie a", Wypozyczenie.class).getResultList();
+    }
+
+    public static List<Pojazd> getAllBikes() throws IOException {
+        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Rower'", Pojazd.class).getResultList();
+    }
+
+    public static List<Klient> getAllClients() throws IOException {
+        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Klient a", Klient.class).getResultList();
+    }
+
+    public EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void start() {
+        //entityManagerFactory = Persistence.createEntityManagerFactory("wypozyczalnia");
+        //entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
     }
 
     public void addWypozyczenie(Wypozyczenie w) {
@@ -60,6 +87,7 @@ public class DBConnector {
         entityManager.getTransaction().commit();
 
     }
+
     public List<Wypozyczenie> printAllRentals() {
         List<Wypozyczenie> list = entityManager.createQuery("SELECT a FROM Wypozyczenie a", Wypozyczenie.class).getResultList();
         for (Wypozyczenie wypozyczenie : list) {
@@ -67,7 +95,6 @@ public class DBConnector {
         }
         return list;
     }
-
 
     public void addKlient(Klient k) {
         //entityManager.getTransaction().begin();
@@ -84,28 +111,29 @@ public class DBConnector {
     public void deletePojazd(Pojazd p) {
         entityManager.remove(p);
     }
+
     public void deleteKlient(Klient k) {
         entityManager.remove(k);
     }
+
     public void deleteWypozyczenie(Wypozyczenie w) {
         entityManager.remove(w);
     }
 
     // nie wiem czy działa
-    public void editPojazd(Pojazd p)
-    {
+    public void editPojazd(Pojazd p) {
         entityManager.getTransaction().begin();
         entityManager.merge(p);
         entityManager.getTransaction().commit();
     }
-    public void editKlient(Klient k)
-    {
+
+    public void editKlient(Klient k) {
         entityManager.getTransaction().begin();
         entityManager.merge(k);
         entityManager.getTransaction().commit();
     }
-    public void editWypozyczenie(Wypozyczenie w)
-    {
+
+    public void editWypozyczenie(Wypozyczenie w) {
         entityManager.getTransaction().begin();
         entityManager.merge(w);
         entityManager.getTransaction().commit();
@@ -115,32 +143,9 @@ public class DBConnector {
         entityManager.getTransaction().commit();
     }
 
-    public void stopdb(){
+    public void stopdb() {
         entityManager.close();
         entityManagerFactory.close();
-    }
-
-    public static List<Pojazd> getAllCars() throws IOException {
-        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Samochód'", Pojazd.class).getResultList();
-    }
-
-    public static List<Pojazd> getAllScooters() throws IOException {
-        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Skuter'", Pojazd.class).getResultList();
-    }
-
-
-
-    public static List<Wypozyczenie> getAllRental() throws IOException {
-        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Wypozyczenie a", Wypozyczenie.class).getResultList();
-    }
-
-
-    public static List<Pojazd> getAllBikes() throws IOException {
-        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='Rower'", Pojazd.class).getResultList();
-    }
-
-    public static List<Klient> getAllClients() throws IOException {
-        return DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Klient a", Klient.class).getResultList();
     }
 
 }

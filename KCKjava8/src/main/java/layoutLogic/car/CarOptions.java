@@ -1,4 +1,4 @@
-package layoutLogic;
+package layoutLogic.car;
 
 import domain.Pojazd;
 import domain.Wypozyczenie;
@@ -12,6 +12,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
+import layoutLogic.DBConnector;
+import layoutLogic.WindowSingleton;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +42,7 @@ public class CarOptions {
     private Button carListButton;
     @FXML
     private TextField deleteVehicleIdTextField;
-//    @FXML
+    //    @FXML
 //    private TableView tableViewCarTab;
     @FXML
     private StackPane printCarsTabStackPane;
@@ -83,8 +85,8 @@ public class CarOptions {
             System.out.println("zły format");
         }
         DBConnector.getInstance().start();
-        Pojazd pojazd = DBConnector.getInstance().entityManager.find(Pojazd.class, _id);
-        List<Wypozyczenie> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
+        Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, _id);
+        List<Wypozyczenie> list = DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
 
         if (pojazd == null) {
             WindowSingleton.alert("Nie ma takiego pojazdu");
@@ -96,29 +98,24 @@ public class CarOptions {
             DBConnector.getInstance().stop();
             return;
         }
-        // todo sout przeniesc do okna
 
         WindowSingleton.alert("Usunięto pojazd o id = " + _id);
         System.out.println("usunieto pojazd o id " + _id);
         DBConnector.getInstance().deletePojazd(pojazd);
         DBConnector.getInstance().stop();
+        deleteVehicleIdTextField.setText("");
     }
-
 
     @FXML
-    public void showMainMenu() throws IOException, InterruptedException {
-        DBConnector dbConnector = DBConnector.getInstance();
+    public void showMainMenu() throws IOException {
         WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
     }
-
-
 
     public void showCarList() {
         WindowSingleton.showVehicleTable("samochod", deleteVehicleIdTextField);
     }
 
-    public void printCarList(){
-        Scene scene = WindowSingleton.getInstance().getScene();
+    public void printCarList() {
         final TableView<Pojazd> table = WindowSingleton.createVehicleTable("samochod");
         printCarsTabStackPane.getChildren().add(table);
     }

@@ -25,27 +25,8 @@ public class WindowSingleton {
     private Stage primaryStage;
     private Scene scene;
 
-    public static void setInstance(WindowSingleton instance) {
-        WindowSingleton.instance = instance;
+    private WindowSingleton() {
     }
-
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
-
-    public Scene getScene() {
-        return scene;
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
-
-    private WindowSingleton() { }
 
     public static WindowSingleton getInstance() {
         if (instance == null) {
@@ -53,6 +34,10 @@ public class WindowSingleton {
             return instance;
         } else return instance;
 
+    }
+
+    public static void setInstance(WindowSingleton instance) {
+        WindowSingleton.instance = instance;
     }
 
     public static void alert(String error) {
@@ -79,11 +64,11 @@ public class WindowSingleton {
         window.showAndWait();
     }
 
-    public static void showVehicleTable(String type, final TextField idField){
+    public static void showVehicleTable(String type, final TextField idField) {
 
         final Stage window = new Stage();
         Button button = new Button("Wybierz");
-        window.setTitle("Lista pojazdów typu \"" + type +"\"");
+        window.setTitle("Lista pojazdów typu \"" + type + "\"");
 
 
         final TableView<Pojazd> table = createVehicleTable(type);
@@ -117,7 +102,7 @@ public class WindowSingleton {
 
     }
 
-    public static TableView createVehicleTable(String type){
+    public static TableView createVehicleTable(String type) {
         final TableView<Pojazd> table;
 //        final Button select = new Button("Select");
 //        String choice = "";
@@ -159,14 +144,30 @@ public class WindowSingleton {
         return table;
     }
 
-    private static ObservableList<Pojazd> getVehiclesObservableList(String type){
+    private static ObservableList<Pojazd> getVehiclesObservableList(String type) {
         ObservableList<Pojazd> vehicles = FXCollections.observableArrayList();
-        List<Pojazd> list = DBConnector.getInstance().entityManager.createQuery("SELECT a FROM Pojazd a WHERE typ='"+type+"'", Pojazd.class).getResultList();
+        List<Pojazd> list = DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Pojazd a WHERE typ='" + type + "'", Pojazd.class).getResultList();
 
         for (Pojazd pojazd : list) {
             vehicles.add(pojazd);
         }
         return vehicles;
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 
     public void setLayout(String pathToFXML) throws IOException {
