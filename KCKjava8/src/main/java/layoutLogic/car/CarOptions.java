@@ -1,5 +1,6 @@
 package layoutLogic.car;
 
+import domain.Klient;
 import domain.Pojazd;
 import domain.Wypozyczenie;
 import javafx.collections.FXCollections;
@@ -37,13 +38,31 @@ public class CarOptions {
     @FXML
     private TextField ubezpieczenie;
     @FXML
+    private TextField editVehicleIdTextField;
+
+
+    @FXML
+    private TextField editCarBegDateTextField;
+    @FXML
+    private TextField editCarRetDateTextField;
+    @FXML
+    private TextField accessCodeTextField;
+    @FXML
+    private TextField priceTextField;
+    @FXML
+    private TextField employeeTextField;
+    @FXML
+    private TextField rentVehicleClientId;
+    @FXML
+    private TextField rentVehicleVehicleId;
+    @FXML
     private TextField dostepnosc;
     @FXML
     private Button carListButton;
     @FXML
     private TextField deleteVehicleIdTextField;
     //    @FXML
-//    private TableView tableViewCarTab;
+    //    private TableView tableViewCarTab;
     @FXML
     private StackPane printCarsTabStackPane;
 //    @FXML
@@ -111,8 +130,20 @@ public class CarOptions {
         WindowSingleton.getInstance().setLayout("/layout/MainMenuScreen.fxml");
     }
 
-    public void showCarList() {
-        WindowSingleton.showVehicleTable("samochod", deleteVehicleIdTextField);
+    public void showCarList(TextField textField) {
+        WindowSingleton.showVehicleTable("samochod", textField);
+    }
+
+    public void showDeleteCarList(){
+        showCarList(deleteVehicleIdTextField);
+    }
+
+    public void showRentCarList(){
+        showCarList(rentVehicleVehicleId);
+    }
+
+    public void showEditCarList(){
+        showCarList(editVehicleIdTextField);
     }
 
     public void printCarList() {
@@ -120,5 +151,33 @@ public class CarOptions {
         printCarsTabStackPane.getChildren().add(table);
     }
 
+    public void showClientList(){
+        WindowSingleton.showClientTable(rentVehicleClientId);
+    }
 
+    public void rentCar(){
+
+        float _price;
+        try {
+            _price = Float.parseFloat(priceTextField.getText());
+        } catch (NumberFormatException e) {
+            WindowSingleton.alert("Niepoprawna cena");
+            return;
+        }
+
+        if(DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='"+rentVehicleVehicleId.getText()+"'", Wypozyczenie.class).getResultList().size()>0){
+            WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
+            return;
+        }
+
+        Wypozyczenie wypozyczenie = new Wypozyczenie();
+        Pojazd pojazd = (Pojazd) DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(rentVehicleVehicleId.getText()));
+        Klient klient = (Klient) DBConnector.getInstance().getEntityManager().find(Klient.class, Long.parseLong(rentVehicleClientId.getText()));
+        DBConnector.getInstance().addWypozyczenie(new Wypozyczenie(pojazd, editCarBegDateTextField.getText(), editCarRetDateTextField.getText(), accessCodeTextField.getText(), klient, _price, employeeTextField.getText()));
+
+        DBConnector.getInstance().start();
+        DBConnector.getInstance().addWypozyczenie(wypozyczenie);
+        DBConnector.getInstance().stop();
+        WindowSingleton.alert("Dodano wypożyczenie");
+    }
 }
