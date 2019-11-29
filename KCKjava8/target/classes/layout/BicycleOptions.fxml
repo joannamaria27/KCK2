@@ -97,7 +97,7 @@
                 </Tab>
                 <Tab text="EDYTUJ">
                     <content>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                        <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white;">
                             <children>
                                 <Label text="PODAJ ID ROWERU KTÓRY CHCESZ EDYTOWAĆ:" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
@@ -106,17 +106,81 @@
                                 </Label>
                                 <TextField fx:id="editVehicleIdTextField" promptText="ID" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets bottom="400.0" left="50.0" right="400.0" />
+                                        <Insets bottom="400.0" left="50.0" right="50.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="bicycleEditM" mnemonicParsing="false" text="EDYTUJ" StackPane.alignment="CENTER">
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MARKA" StackPane.alignment="CENTER">
                                     <StackPane.margin>
-                                        <Insets bottom="300.0" right="400.0" />
+                                        <Insets bottom="400.0" left="50.0" right="650.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" left="50.0" right="650.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="200.0" left="50.0" right="650.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0" left="50.0" right="650.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets left="50.0" right="650.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <Button fx:id="submitBicycle" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="ZATWIERDZ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets right="650.0" top="400.0" />
+                                    </StackPane.margin>
+                                    <cursor>
+                                        <Cursor fx:constant="OPEN_HAND" />
+                                    </cursor>
+                                </Button>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="UBEZPIECZENIE" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="100.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="STAN POJAZDU" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="200.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="793.0" promptText="MARKA" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="400.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="MODEL" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <TextField prefHeight="31.0" prefWidth="599.0" promptText="DOSTĘPNOŚĆ" StackPane.alignment="CENTER">
+                                    <StackPane.margin>
+                                        <Insets left="650.0" right="50.0" top="300.0" />
+                                    </StackPane.margin>
+                                </TextField>
+                                <Button fx:id="bicycleList" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="LISTA ROWERÓW" StackPane.alignment="CENTER">
+                                    <cursor>
+                                        <Cursor fx:constant="OPEN_HAND" />
+                                    </cursor>
+                                    <StackPane.margin>
+                                        <Insets bottom="300.0" left="650.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="editListButton" mnemonicParsing="false" onAction="#showBicycleList" prefHeight="31.0" prefWidth="201.0" text="LISTA ROWERÓW" textAlignment="CENTER" StackPane.alignment="CENTER">
+                                <Button fx:id="editBicycle" mnemonicParsing="false" prefHeight="39.0" prefWidth="186.0" text="EDYTUJ" StackPane.alignment="CENTER">
+                                    <cursor>
+                                        <Cursor fx:constant="OPEN_HAND" />
+                                    </cursor>
                                     <StackPane.margin>
-                                        <Insets bottom="400.0" left="700.0" right="50.0" />
+                                        <Insets bottom="300.0" right="650.0" />
                                     </StackPane.margin>
                                 </Button>
                             </children>
@@ -156,7 +220,7 @@
                                         <Insets left="50.0" right="400.0" top="150.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="bicycleEditM1" mnemonicParsing="false" text="WYPOŻYCZ" StackPane.alignment="CENTER">
+                                <Button fx:id="bicycleRent" mnemonicParsing="false" text="WYPOŻYCZ" StackPane.alignment="CENTER">
                                     <StackPane.margin>
                                         <Insets right="400.0" top="400.0" />
                                     </StackPane.margin>
@@ -171,12 +235,12 @@
                                         <Insets left="50.0" right="400.0" top="250.0" />
                                     </StackPane.margin>
                                 </TextField>
-                                <Button fx:id="editListButton11" mnemonicParsing="false" onAction="#showBicycleList" prefHeight="40.0" prefWidth="201.0" text="LISTA SAMOCHODÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                                <Button fx:id="bicycleListButton" mnemonicParsing="false" onAction="#showBicycleList" prefHeight="40.0" prefWidth="201.0" text="LISTA ROWERÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="850.0" top="150.0" />
                                     </StackPane.margin>
                                 </Button>
-                                <Button fx:id="editListButton111" mnemonicParsing="false" onAction="#showBicycleList" prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
+                                <Button fx:id="customerListButton" mnemonicParsing="false" onAction="#showBicycleList" prefHeight="40.0" prefWidth="201.0" text="LISTA KLIENTÓW" textAlignment="CENTER" StackPane.alignment="TOP_LEFT">
                                     <StackPane.margin>
                                         <Insets left="850.0" top="250.0" />
                                     </StackPane.margin>

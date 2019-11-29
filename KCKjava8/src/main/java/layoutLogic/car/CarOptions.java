@@ -3,15 +3,10 @@ package layoutLogic.car;
 import domain.Klient;
 import domain.Pojazd;
 import domain.Wypozyczenie;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import layoutLogic.DBConnector;
 import layoutLogic.WindowSingleton;
@@ -39,22 +34,46 @@ public class CarOptions {
     private TextField ubezpieczenie;
     @FXML
     private TextField editVehicleIdTextField;
-
-
     @FXML
-    private TextField editCarBegDateTextField;
+    private Button setEditedCarButton;
     @FXML
-    private TextField editCarRetDateTextField;
+    private Button editCarListButton;
+    @FXML
+    private TextField editCarMarkaTextField;
+    @FXML
+    private TextField editCarModelTextField;
+    @FXML
+    private TextField editCarStanPojazduTextField;
+    @FXML
+    private TextField editCarUbezpieczenieTextField;
+    @FXML
+    private TextField editCarDostepnoscTextField;
+    @FXML
+    private TextField editCarNewMarkaTextField;
+    @FXML
+    private TextField editCarNewModelTextField;
+    @FXML
+    private TextField editCarNewStanPojazduTextField;
+    @FXML
+    private TextField editCarNewUbezpieczenieTextField;
+    @FXML
+    private TextField editCarNewDostepnoscTextField;
+    @FXML
+    private Button editCarButton;
+    @FXML
+    private TextField rentCarBegDateTextField;
+    @FXML
+    private TextField rentCarRetDateTextField;
+    @FXML
+    private TextField rentVehicleClientId;
+    @FXML
+    private TextField rentVehicleVehicleId;
     @FXML
     private TextField accessCodeTextField;
     @FXML
     private TextField priceTextField;
     @FXML
     private TextField employeeTextField;
-    @FXML
-    private TextField rentVehicleClientId;
-    @FXML
-    private TextField rentVehicleVehicleId;
     @FXML
     private TextField dostepnosc;
     @FXML
@@ -84,6 +103,12 @@ public class CarOptions {
 
     @FXML
     public void addCarToDB() {
+
+        if (marka.getText().equals("") || model.getText().equals("") || stanPojazdu.getText().equals("") || ubezpieczenie.getText().equals("") || dostepnosc.getText().equals("")) {
+            WindowSingleton.alert("Niepoprawne dane");
+            return;
+        }
+
         _marka = marka.getText();
         _model = model.getText();
         _stanPojazdu = stanPojazdu.getText();
@@ -134,15 +159,15 @@ public class CarOptions {
         WindowSingleton.showVehicleTable("samochod", textField);
     }
 
-    public void showDeleteCarList(){
+    public void showDeleteCarList() {
         showCarList(deleteVehicleIdTextField);
     }
 
-    public void showRentCarList(){
+    public void showRentCarList() {
         showCarList(rentVehicleVehicleId);
     }
 
-    public void showEditCarList(){
+    public void showEditCarList() {
         showCarList(editVehicleIdTextField);
     }
 
@@ -151,11 +176,20 @@ public class CarOptions {
         printCarsTabStackPane.getChildren().add(table);
     }
 
-    public void showClientList(){
+    public void showClientList() {
         WindowSingleton.showClientTable(rentVehicleClientId);
     }
 
-    public void rentCar(){
+    public void rentCar() {
+
+        if (rentVehicleVehicleId.getText().equals("") || rentVehicleClientId.getText().equals("") || rentCarBegDateTextField.getText().equals("") || rentCarRetDateTextField.getText().equals("") || accessCodeTextField.getText().equals("") || employeeTextField.getText().equals("")) {
+            WindowSingleton.alert("Niepoprawne dane");
+            return;
+        }
+
+//        rentVehicleVehicleId.getText()
+//        rentVehicleClientId.getText())
+//        pojazd, rentCarBegDateTextField.getText(), rentCarRetDateTextField.getText(), accessCodeTextField.getText(), klient, _price, employeeTextField.getText())
 
         float _price;
         try {
@@ -165,7 +199,7 @@ public class CarOptions {
             return;
         }
 
-        if(DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='"+rentVehicleVehicleId.getText()+"'", Wypozyczenie.class).getResultList().size()>0){
+        if (DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + rentVehicleVehicleId.getText() + "'", Wypozyczenie.class).getResultList().size() > 0) {
             WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
             return;
         }
@@ -173,12 +207,72 @@ public class CarOptions {
         Wypozyczenie wypozyczenie = new Wypozyczenie();
         Pojazd pojazd = (Pojazd) DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(rentVehicleVehicleId.getText()));
         Klient klient = (Klient) DBConnector.getInstance().getEntityManager().find(Klient.class, Long.parseLong(rentVehicleClientId.getText()));
+        if (pojazd == null) {
+            WindowSingleton.alert("Nie ma pojazdu o tym ID");
+            return;
+        }
+        if (klient == null) {
+            WindowSingleton.alert("Nie ma klienta o tym ID");
+            return;
+        }
         DBConnector.getInstance().start();
-        DBConnector.getInstance().addWypozyczenie(new Wypozyczenie(pojazd, editCarBegDateTextField.getText(), editCarRetDateTextField.getText(), accessCodeTextField.getText(), klient, _price, employeeTextField.getText()));
+        DBConnector.getInstance().addWypozyczenie(new Wypozyczenie(pojazd, rentCarBegDateTextField.getText(), rentCarRetDateTextField.getText(), accessCodeTextField.getText(), klient, _price, employeeTextField.getText()));
 
-
-//        DBConnector.getInstance().addWypozyczenie(wypozyczenie);
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano wypożyczenie");
     }
+
+    public void fillEditedCarFields() {
+        System.out.println("gettext: \n" + editCarNewMarkaTextField.getText() + "\"");
+        Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(editVehicleIdTextField.getText()));
+        if (pojazd == null) {
+            WindowSingleton.alert("Nie ma pojazdu o tym ID");
+            return;
+        }
+
+        editCarMarkaTextField.setText("Marka - " + pojazd.getMarka());
+        editCarModelTextField.setText("Model - " + pojazd.getModel());
+        editCarStanPojazduTextField.setText("Stan pojazdu - " + pojazd.getStan_pojazdu());
+        editCarUbezpieczenieTextField.setText("Ubezpieczenie - " + pojazd.getId_ubezpieczenia());
+        editCarDostepnoscTextField.setText("Dostępność - " + pojazd.getDostepnosc());
+
+    }
+
+    public void editCar() {
+        Long id_;
+
+        if (editCarNewMarkaTextField.getText().equals("") || editCarNewModelTextField.getText().equals("") || editCarNewUbezpieczenieTextField.getText().equals("") || editCarNewStanPojazduTextField.getText().equals("") || editCarNewDostepnoscTextField.getText().equals("")) {
+            WindowSingleton.alert("Niepoprawne dane");
+            return;
+        }
+
+        try {
+            id_ = Long.parseLong(editVehicleIdTextField.getText());
+        } catch (NumberFormatException e) {
+            System.out.println("zły format");
+            WindowSingleton.alert("Zły format");
+            return;
+        }
+
+        Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, Long.parseLong(editVehicleIdTextField.getText()));
+
+        if (pojazd == null) {
+            if (pojazd == null) {
+                WindowSingleton.alert("Nie ma pojazdu o tym ID");
+                return;
+            }
+        }
+
+        String[] newCarDetails = new String[5];
+        newCarDetails[0] = editCarNewMarkaTextField.getText();
+        newCarDetails[1] = editCarNewModelTextField.getText();
+        newCarDetails[2] = editCarNewUbezpieczenieTextField.getText();
+        newCarDetails[3] = editCarNewStanPojazduTextField.getText();
+        newCarDetails[4] = editCarNewDostepnoscTextField.getText();
+        pojazd.setParameters(newCarDetails);
+        DBConnector.getInstance().editPojazd(pojazd);
+        WindowSingleton.alert("Zedytowano pojazd");
+    }
+
+
 }
