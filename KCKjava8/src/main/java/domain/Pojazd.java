@@ -106,5 +106,10 @@ import javax.persistence.Id;
         dostepnosc = choices[4];
     }
 
+    @Override
+    public String toString(){
+        return String.valueOf(id);
+    }
+
 
 }

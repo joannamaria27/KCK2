@@ -116,4 +116,8 @@ public class Klient {
         telefon = choices[6];
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
 }

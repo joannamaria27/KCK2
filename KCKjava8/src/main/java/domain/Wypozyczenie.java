@@ -19,16 +19,38 @@ public class Wypozyczenie {
     private Float cena;
     private String pracownik;
 
-
-    public Wypozyczenie(Pojazd id_pojazdu_, String data_wypozyczenia_,String data_oddania_, String kod_dostepu_, Klient id_klienta_, Float cena_, String pracownik_){
+    public Wypozyczenie(Pojazd id_pojazdu_, String data_wypozyczenia_, String data_oddania_, String kod_dostepu_, Klient id_klienta_, Float cena_, String pracownik_) {
         id_pojazdu = id_pojazdu_;
         data_wypozyczenia = data_wypozyczenia_;
-        data_oddania=data_oddania_;
+        data_oddania = data_oddania_;
         kod_dostepu = kod_dostepu_;
         id_klienta = id_klienta_;
-        cena=cena_;
-        pracownik=pracownik_;
+        cena = cena_;
+        pracownik = pracownik_;
     }
+
+    public Wypozyczenie(String[] choices) { //, Pojazd p, Klient k){
+
+//todo
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("wypozyczalnia");
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//        entityManager.getTransaction().begin();
+//        Pojazd p = entityManager.find(Pojazd.class, Long.parseLong(choices[0]));
+//        entityManager.getTransaction().commit();
+//        id_pojazdu = p;
+        data_wypozyczenia = choices[1];
+        data_oddania = choices[2];
+        kod_dostepu = choices[3];
+
+//todo
+        //id_klienta = choices[4];
+        cena = Float.parseFloat(choices[5]);
+        pracownik = choices[6];
+
+
+    }
+
+    public Wypozyczenie() { }
 
     public long getId() {
         return id;
@@ -94,7 +116,7 @@ public class Wypozyczenie {
         this.pracownik = pracownik;
     }
 
-    public void setParameters(String[] choices){
+    public void setParameters(String[] choices) {
         //todo
 //        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("wypozyczalnia");
 //        EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -103,35 +125,13 @@ public class Wypozyczenie {
 //        entityManager.getTransaction().commit();
 //        id_pojazdu = p;
         data_wypozyczenia = choices[0];
-        data_oddania=choices[1];
+        data_oddania = choices[1];
         kod_dostepu = choices[2];
 
 //todo
         //id_klienta = choices[4];
-        cena=Float.parseFloat(choices[3]);
-        pracownik=choices[4];
+        cena = Float.parseFloat(choices[3]);
+        pracownik = choices[4];
 
     }
-
-    public Wypozyczenie(String[] choices){ //, Pojazd p, Klient k){
-
-//todo
-//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("wypozyczalnia");
-//        EntityManager entityManager = entityManagerFactory.createEntityManager();
-//        entityManager.getTransaction().begin();
-//        Pojazd p = entityManager.find(Pojazd.class, Long.parseLong(choices[0]));
-//        entityManager.getTransaction().commit();
-//        id_pojazdu = p;
-        data_wypozyczenia = choices[1];
-        data_oddania=choices[2];
-        kod_dostepu = choices[3];
-
-//todo
-        //id_klienta = choices[4];
-        cena=Float.parseFloat(choices[5]);
-        pracownik=choices[6];
-
-
-    }
-    public Wypozyczenie(){}
 }

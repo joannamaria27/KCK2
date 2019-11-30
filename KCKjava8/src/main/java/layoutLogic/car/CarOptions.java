@@ -130,31 +130,32 @@ public class CarOptions {
 
     @FXML
     public void deleteCarFromDB() {
+        long _id;
         try {
             _id = Long.parseLong(deleteVehicleIdTextField.getText());
+            DBConnector.getInstance().start();
+            Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, _id);
+            List<Wypozyczenie> list = DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
+
+            if (pojazd == null) {
+                WindowSingleton.alert("Nie ma takiego pojazdu");
+                DBConnector.getInstance().stop();
+                return;
+            }
+            if (list.size() > 0) {
+                WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
+                DBConnector.getInstance().stop();
+                return;
+            }
+
+            WindowSingleton.alert("Usunięto pojazd o id = " + _id);
+            DBConnector.getInstance().deletePojazd(pojazd);
+            DBConnector.getInstance().stop();
+            deleteVehicleIdTextField.setText("");
         } catch (NumberFormatException e) {
-            System.out.println("zły format");
-        }
-        DBConnector.getInstance().start();
-        Pojazd pojazd = DBConnector.getInstance().getEntityManager().find(Pojazd.class, _id);
-        List<Wypozyczenie> list = DBConnector.getInstance().getEntityManager().createQuery("SELECT a FROM Wypozyczenie a WHERE id_pojazdu_id='" + _id + "'", Wypozyczenie.class).getResultList();
-
-        if (pojazd == null) {
-            WindowSingleton.alert("Nie ma takiego pojazdu");
-            DBConnector.getInstance().stop();
-            return;
-        }
-        if (list.size() > 0) {
-            WindowSingleton.alert("Pojazd jest w trakcie wypożyczenia");
-            DBConnector.getInstance().stop();
-            return;
+            WindowSingleton.alert("Nie ma pojazdu o tym ID");
         }
 
-        WindowSingleton.alert("Usunięto pojazd o id = " + _id);
-        System.out.println("usunieto pojazd o id " + _id);
-        DBConnector.getInstance().deletePojazd(pojazd);
-        DBConnector.getInstance().stop();
-        deleteVehicleIdTextField.setText("");
     }
 
     @FXML
@@ -241,7 +242,6 @@ public class CarOptions {
         try {
             _id = Long.parseLong(editVehicleIdTextField.getText());
         } catch (NumberFormatException e) {
-            System.out.println("zły format");
             WindowSingleton.alert("Zły format");
             return;
         }
@@ -270,7 +270,6 @@ public class CarOptions {
         try {
             id_ = Long.parseLong(editVehicleIdTextField.getText());
         } catch (NumberFormatException e) {
-            System.out.println("zły format");
             WindowSingleton.alert("Zły format");
             return;
         }

@@ -58,7 +58,8 @@ public class RentOptions {
         try {
             _id = Long.parseLong(editRentIdTextField.getText());
         } catch (NumberFormatException e) {
-            System.out.println("zły format");
+            WindowSingleton.alert("Nie ma wypożyczenia o takim ID");
+            return;
         }
 
         Wypozyczenie wypozyczenie = DBConnector.getInstance().getEntityManager().find(Wypozyczenie.class, Long.parseLong(editRentIdTextField.getText()));
@@ -92,7 +93,7 @@ public class RentOptions {
         try {
             id_ = Long.parseLong(editRentIdTextField.getText());
         } catch (NumberFormatException e) {
-            WindowSingleton.alert("Zły format");
+            WindowSingleton.alert("Nie ma wypożyczenia o tym ID");
             return;
         }
 

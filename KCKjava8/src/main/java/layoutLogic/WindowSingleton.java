@@ -262,12 +262,12 @@ public class WindowSingleton {
         // id samochodu
         TableColumn<Wypozyczenie, Long> carIdColumn = new TableColumn<Wypozyczenie, Long>("ID pojazdu");
         carIdColumn.setMinWidth(100);
-        carIdColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Long>("id_pojazdu_id"));
+        carIdColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Long>("id_pojazdu"));
 
         // id klienta
         TableColumn<Wypozyczenie, Klient> clientIdColumn = new TableColumn<Wypozyczenie, Klient>("ID klienta");
         clientIdColumn.setMinWidth(100);
-        clientIdColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Klient>("id_klienta_id"));
+        clientIdColumn.setCellValueFactory(new PropertyValueFactory<Wypozyczenie, Klient>("id_klienta"));
 
         // cena
         TableColumn<Wypozyczenie, Float> priceColumn = new TableColumn<Wypozyczenie, Float>("Cena");
