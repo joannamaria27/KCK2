@@ -28,6 +28,8 @@ public class WindowSingleton {
     private Stage primaryStage;
     private Scene scene;
 
+
+
     private WindowSingleton() {
     }
 

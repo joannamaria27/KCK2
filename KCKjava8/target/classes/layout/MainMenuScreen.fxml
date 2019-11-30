@@ -25,7 +25,7 @@
    <center>
       <BorderPane prefHeight="576.0" prefWidth="1104.0" BorderPane.alignment="CENTER">
          <center>
-            <ImageView fx:id="bicycleMain" fitHeight="250.0" fitWidth="250.0" onMousePressed="#openBicycleMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="bicycleMain" fitHeight="250.0" fitWidth="250.0" onMouseEntered="#changeBicycleIcon" onMouseExited="#changeBackBicycleIcon" onMousePressed="#openBicycleMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../image/bicycle.png" />
                </image>
@@ -35,7 +35,7 @@
             </ImageView>
          </center>
          <right>
-            <ImageView fx:id="scooterMain" fitHeight="250.0" fitWidth="250.0" onMousePressed="#openScooterMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="scooterMain" fitHeight="250.0" fitWidth="250.0" onMouseEntered="#changeScooterIcon" onMouseExited="#changeBackScooterIcon" onMousePressed="#openScooterMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../image/scooter.png" />
                </image>
@@ -45,9 +45,9 @@
             </ImageView>
          </right>
          <left>
-            <ImageView fx:id="carMain" fitHeight="250.0" fitWidth="250.0" onMousePressed="#openCarMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="carMain" fitHeight="250.0" fitWidth="250.0" onMouseEntered="#changeCarIcon" onMouseExited="#changeBackCarIcon" onMousePressed="#openCarMenu" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../image/car.png" />
+                  <Image backgroundLoading="true" url="@../image/car.png" />
                </image>
                <BorderPane.margin>
                   <Insets left="150.0" top="150.0" />
