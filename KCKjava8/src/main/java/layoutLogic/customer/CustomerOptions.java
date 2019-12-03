@@ -92,7 +92,7 @@ public class CustomerOptions {
         _telefon=telefon.getText();
 
         DBConnector.getInstance().start();
-        DBConnector.getInstance().addKlient(new Klient( _nazwisko, _imie, _pesel, _dataUrodzenia, _adres, _numerPrawaJazdy, _telefon));
+        DBConnector.getInstance().addKlient(new Klient( _numerPrawaJazdy, _nazwisko, _imie, _dataUrodzenia, _adres, _pesel, _telefon));
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano klienta");
 

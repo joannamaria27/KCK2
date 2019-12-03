@@ -16,7 +16,7 @@
                   <Image url="@../image/logo.png" />
                </image>
                <StackPane.margin>
-                  <Insets />
+                  <Insets top="20.0" />
                </StackPane.margin>
             </ImageView>
          </children>

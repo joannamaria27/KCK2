@@ -307,13 +307,18 @@ public class ScooterOptions {
         DBConnector.getInstance().editPojazd(pojazd);
         WindowSingleton.alert("Zedytowano pojazd");
 
-        rentScooterBegDateTextField.setText("");
-        rentScooterRetDateTextField.setText("");
-        accessCodeTextField.setText("");
-        employeeTextField.setText("");
-        rentVehicleVehicleId.setText("");
-        rentVehicleClientId.setText("");
-        priceTextField.setText("");
+        editScooterNewMarkaTextField.setText("");
+        editScooterNewModelTextField.setText("");
+        editScooterNewUbezpieczenieTextField.setText("");
+        editScooterNewStanPojazduTextField.setText("");
+        editScooterNewDostepnoscTextField.setText("");
+
+        editScooterMarkaTextField.setText("");
+        editScooterModelTextField.setText("");
+        editScooterUbezpieczenieTextField.setText("");
+        editScooterStanPojazduTextField.setText("");
+        editScooterDostepnoscTextField.setText("");
+
     }
 
 }

@@ -120,6 +120,12 @@ public class BicycleOptions {
         DBConnector.getInstance().addPojazd(new Pojazd("rower", _marka, _model, _ubezpieczenie, _stanPojazdu, _dostepnosc));
         DBConnector.getInstance().stop();
         WindowSingleton.alert("Dodano pojazd");
+
+        marka.setText("");
+        model.setText("");
+        stanPojazdu.setText("");
+        ubezpieczenie.setText("");
+        dostepnosc.setText("");
     }
 
     @FXML
@@ -273,6 +279,18 @@ public class BicycleOptions {
         pojazd.setParameters(newBicycleDetails);
         DBConnector.getInstance().editPojazd(pojazd);
         WindowSingleton.alert("Zedytowano pojazd");
+
+        editVehicleIdTextField.setText("");
+        editBicycleNewMarkaTextField.setText("");
+        editBicycleNewModelTextField.setText("");
+        editBicycleNewUbezpieczenieTextField.setText("");
+        editBicycleNewStanPojazduTextField.setText("");
+        editBicycleNewDostepnoscTextField.setText("");
+        editBicycleMarkaTextField.setText("");
+        editBicycleModelTextField.setText("");
+        editBicycleUbezpieczenieTextField.setText("");
+        editBicycleStanPojazduTextField.setText("");
+        editBicycleDostepnoscTextField.setText("");
     }
 
 }

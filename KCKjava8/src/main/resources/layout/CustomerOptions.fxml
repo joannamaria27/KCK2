@@ -60,7 +60,7 @@
                                         <Image url="@../image/customer.png" />
                                     </image>
                                     <StackPane.margin>
-                                        <Insets bottom="200.0" right="50.0" />
+                                        <Insets bottom="100.0" right="50.0" />
                                     </StackPane.margin>
                                 </ImageView>
                         <TextField fx:id="numerPrawaJazdy" prefHeight="31.0" prefWidth="599.0" promptText="NUMER PRAWA JAZDY">
